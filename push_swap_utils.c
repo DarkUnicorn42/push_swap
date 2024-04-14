@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+//#include "push_swap.h"
 
-/* free functions*/
-void	freeStack(Stack *s)
-{
-	free(s->array);
-	s->array = NULL;
-	s->top = -1;
-}
+// /* free functions*/
+// void	freeStack(Stack *s)
+// {
+// 	free(s->array);
+// 	s->array = NULL;
+// 	s->top = -1;
+// }

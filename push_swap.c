@@ -12,8 +12,44 @@
 
 #include "push_swap.h"
 
+// Function to print an operation
+void print_operation(char *operation) {
+    printf("%s\n", operation);
+}
+
+// Function to push an integer onto a stack
+void push(t_Stack *stack, int num) {
+    stack->top++;
+    stack->data[stack->top] = num;
+}
+
+int main() {
+    t_Stack stackA;
+    t_Stack stackB;
+    int i;
+    int nums[] = {4, 3, 2, 1};  // The numbers to sort
+    int num_nums = sizeof(nums) / sizeof(nums[0]);  // The number of numbers
+
+    // Initialize the stacks
+    stackA.top = -1;
+    stackB.top = -1;
+
+    // Push the numbers onto stackA
+    i = 0;
+    while (i < num_nums) {
+        push(&stackA, nums[i]);
+        i++;
+    }
+
+    // Sort the numbers
+    //sort_stack_a(&stackA, &stackB);
+    printf("Sorting complete\n");
+    return (0);
+}
 
 
+/* ************************************************************************** */
+/*
 int	main(int ac, char **av)
 {
 	t_Stack	*stack_a;
@@ -32,3 +68,4 @@ int	main(int ac, char **av)
 
     return (0);
 }
+*/

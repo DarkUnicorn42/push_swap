@@ -77,13 +77,13 @@ void pb(t_Stack *stackA, t_Stack *stackB)
     if (stackA->top >= 0)
     {
         stackB->top++;
-        stackB->data[stackB->top] = stackA->data[stackA->top;
-        stackA->top--;]
+        stackB->data[stackB->top] = stackA->data[stackA->top];
+        stackA->top--;
     }
 }
 
 // Function to rotate stack A (shift all elements up by one position)
-void ra(t_Stack *stack)
+void ra(t_Stack *stackA)
 {
     int i;
     int temp;
@@ -102,7 +102,7 @@ void ra(t_Stack *stack)
 }
 
 // Function to rotate stack B (shift all elements up by one position)
-void rb(t_Stack *stack)
+void rb(t_Stack *stackB)
 {
     int i;
     int temp;
@@ -128,7 +128,7 @@ void rr(t_Stack *stackA, t_Stack *stackB)
 }
 
 // Function to reverse rotate stack A (shift all elements down by one position)
-void rra(t_Stack *stack)
+void rra(t_Stack *stackA)
 {
     int i;
     int temp;
@@ -146,7 +146,7 @@ void rra(t_Stack *stack)
 }
 
 // Function to reverse rotate stack B (shift all elements down by one position)
-void rrb(t_Stack *stack)
+void rrb(t_Stack *stackB)
 {
     int i;
     int temp;

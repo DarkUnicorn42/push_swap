@@ -1,3 +1,4 @@
+/*
 function sort_stack_a(stackA, stackB):
     while stackA is not sorted:
         find the smallest number in stackA
@@ -6,3 +7,4 @@ function sort_stack_a(stackA, stackB):
     while stackB is not empty:
         use the 'pa' operation to move all numbers back to stackA
 
+*/

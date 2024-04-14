@@ -37,4 +37,7 @@ void	rra(t_Stack *stack);
 void	rrb(t_Stack *stack);
 void	rrr(t_Stack *stackA, t_Stack *stackB);
 
+void print_operation(char *operation);
+void push(t_Stack *stack, int num);
+
 #endif
