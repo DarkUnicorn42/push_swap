@@ -26,9 +26,15 @@ typedef struct Stack
 }	t_Stack;
 
 
-size_t	ft_strlen(const char *str);
-void	ft_printfp(unsigned long int c, int *len);
-void	ft_printfc(char c, int *len);
-
+void	sa(t_Stack *stack);
+void	sb(t_Stack *stack);
+void	pa(t_Stack *stackA, t_Stack *stackB);
+void	pb(t_Stack *stackA, t_Stack *stackB);
+void	ra(t_Stack *stack);
+void	rb(t_Stack *stack);
+void	rr(t_Stack *stackA, t_Stack *stackB);
+void	rra(t_Stack *stack);
+void	rrb(t_Stack *stack);
+void	rrr(t_Stack *stackA, t_Stack *stackB);
 
 #endif
