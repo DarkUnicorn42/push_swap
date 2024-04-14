@@ -21,20 +21,10 @@
 
 typedef struct Stack
 {
-	int				*array;
+	int				*data;
 	int				top;
-	int				bottom;	
-	int				data;
-	struct Stack	*next;
-	struct Stack	*prev;
 }	t_Stack;
 
-typedef struct SortingAlgorithm
-{
-	t_Stack	a;
-	t_Stack	b;
-	int		limit;/* Instruction limit */
-}	t_SortingAlgorithm;
 
 size_t	ft_strlen(const char *str);
 void	ft_printfp(unsigned long int c, int *len);

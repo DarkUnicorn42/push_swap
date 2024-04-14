@@ -22,6 +22,13 @@ int	main(int ac, char **av)
 	
 	if (ac < 2)
 		return (0);
-	/*code*/
-	return (0);
+    // Parse the command-line arguments into an array of integers.
+    // This will be the initial state of stack A. Stack B will be empty.
+
+    // Implement a sorting algorithm that uses the stack operations to sort the numbers.
+    // The algorithm should aim to use the smallest possible number of operations.
+
+    // Print the operations used by the sorting algorithm.
+
+    return (0);
 }
