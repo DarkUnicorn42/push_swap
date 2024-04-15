@@ -30,6 +30,13 @@ int main() {
     int nums[] = {4, 3, 2, 1};  // The numbers to sort
     int num_nums = sizeof(nums) / sizeof(nums[0]);  // The number of numbers
 
+    stackA.data = (int *)malloc(num_nums * sizeof(int));
+    stackB.data = (int *)malloc(num_nums * sizeof(int));
+
+    if (stackA.data == NULL || stackB.data == NULL) {
+        printf("Error: malloc failed\n");
+        return (1);
+    }
     // Initialize the stacks
     stackA.top = -1;
     stackB.top = -1;
