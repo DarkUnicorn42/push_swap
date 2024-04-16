@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/14 13:35:50 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:43:03 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,31 @@
 # include <stdio.h>
 # include <stdarg.h>
 
-typedef struct Stack
+typedef struct s_stack
 {
 	int				*data;
 	int				top;
-}	t_Stack;
+}	t_stack;
+
+typedef struct s_node
+{
+	int		datanode;
+	t_node	*next;
+}	t_node;
 
 
-void	sa(t_Stack *stack);
-void	sb(t_Stack *stack);
-void	pa(t_Stack *stackA, t_Stack *stackB);
-void	pb(t_Stack *stackA, t_Stack *stackB);
-void	ra(t_Stack *stack);
-void	rb(t_Stack *stack);
-void	rr(t_Stack *stackA, t_Stack *stackB);
-void	rra(t_Stack *stack);
-void	rrb(t_Stack *stack);
-void	rrr(t_Stack *stackA, t_Stack *stackB);
+void	sa(t_stack *stack);
+void	sb(t_stack *stack);
+void	pa(t_stack *stackA, t_stack *stackB);
+void	pb(t_stack *stackA, t_stack *stackB);
+void	ra(t_stack *stack);
+void	rb(t_stack *stack);
+void	rr(t_stack *stackA, t_stack *stackB);
+void	rra(t_stack *stack);
+void	rrb(t_stack *stack);
+void	rrr(t_stack *stackA, t_stack *stackB);
 
-void print_operation(char *operation);
-void push(t_Stack *stack, int num);
+void	print_operation(char *operation);
+void	push(t_stack *stack, int num);
 
 #endif
