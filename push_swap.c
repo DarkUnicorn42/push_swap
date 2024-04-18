@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/16 14:43:18 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:06:49 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ void	push(t_stack *stack, int num)
 	stack->top++;
 	stack->data[stack->top] = num;
 }
-
-int	main()
+int	stack_init()
 {
-	t_stack	stackA;
-	t_stack	stackB;
-	int		i;
 	int		nums[] = {4, 3, 2, 1};  // The numbers to sort
 	int		num_nums = sizeof(nums) / sizeof(nums[0]);  // The number of numbers
+	int		i;
+	t_stack	stackA;
+	t_stack	stackB;
 
 	stackA.data = (int *)malloc(num_nums * sizeof(int));
 	stackB.data = (int *)malloc(num_nums * sizeof(int));
@@ -40,9 +39,10 @@ int	main()
 		printf("Error: malloc failed\n");
 		return (1);
 	}
-	// Initialize the stacks
+
 	stackA.top = -1;
-	stackB.top = -1;	
+	stackB.top = -1;
+
 	// Push the numbers onto stackA
 	i = 0;
 	while (i < num_nums)
@@ -50,6 +50,13 @@ int	main()
 		push(&stackA, nums[i]);
 		i++;
 	}
+	return (0);
+}
+
+int	main(int argc[], int argv[])
+{
+	stack_init();
+
 	// Sort the numbers
 	//sort_stack_a(&stackA, &stackB);
 	printf("Sorting complete\n");

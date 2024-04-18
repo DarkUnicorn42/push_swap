@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/16 14:43:03 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:00:38 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_stack
 typedef struct s_node
 {
 	int		datanode;
-	t_node	*next;
+	int		*next;
 }	t_node;
 
 
@@ -45,5 +45,7 @@ void	rrr(t_stack *stackA, t_stack *stackB);
 
 void	print_operation(char *operation);
 void	push(t_stack *stack, int num);
+
+int	ft_atoi(const char *nptr)
 
 #endif
