@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwojtcza <mwojtcza@student.42warsaw.p      +#+  +:+       +#+        */
+/*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:23:09 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/03/07 20:21:58 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:08:40 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 int	ft_atoi(const char *nptr)
 {

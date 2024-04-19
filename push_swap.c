@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/18 15:06:49 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:36:18 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,44 +22,71 @@ void	print_operation(char *operation)
 void	push(t_stack *stack, int num)
 {
 	stack->top++;
+//	stack->data = &num;
 	stack->data[stack->top] = num;
 }
-int	stack_init()
-{
-	int		nums[] = {4, 3, 2, 1};  // The numbers to sort
-	int		num_nums = sizeof(nums) / sizeof(nums[0]);  // The number of numbers
-	int		i;
-	t_stack	stackA;
-	t_stack	stackB;
 
-	stackA.data = (int *)malloc(num_nums * sizeof(int));
-	stackB.data = (int *)malloc(num_nums * sizeof(int));
-	if (stackA.data == NULL || stackB.data == NULL)
+int	stack_init(int argc, char **argv, t_stack *stackA, t_stack *stackB)
+{
+	int		*nums;  // The numbers to sort
+	int		num_nums;  // The number of numbers
+	int		i;
+	
+	num_nums = argc - 1;
+	nums = (int *)malloc(num_nums * sizeof(int));
+	if (nums == NULL)
 	{
 		printf("Error: malloc failed\n");
 		return (1);
 	}
-
-	stackA.top = -1;
-	stackB.top = -1;
-
-	// Push the numbers onto stackA
 	i = 0;
-	while (i < num_nums)
+	if (argc > 2)
 	{
-		push(&stackA, nums[i]);
+		while (i < num_nums)
+		{
+			nums[i] = *argv[i + 1] - '0';
+			i++;
+		}
+	}
+	else if (argc == 2)
+	{
+		//atoi;
+	}
+	else
+		printf("error");
+
+printf("num_nums: %d\n", num_nums);
+
+//stack init
+	stackA->top = -1;
+	stackB->top = -1;
+//push nums on stackA
+	i = 0;
+	while (i < num_nums + 1)
+	{
+		push(stackA, nums[i]);
 		i++;
 	}
 	return (0);
 }
 
-int	main(int argc[], int argv[])
+int	main(int argc, char **argv)
 {
-	stack_init();
-
+	t_stack	stackA;
+	t_stack	stackB;
+	int		i;
+	
+	stack_init(argc, argv, &stackA, &stackB);
+	i = 0;
+	while (stackA.top > i)
+	{
+		printf("%d\n", stackA.data[i]);
+		i++;
+		//stackA.top--;
+	}
 	// Sort the numbers
 	//sort_stack_a(&stackA, &stackB);
-	printf("Sorting complete\n");
+	//printf("%d", stackA.top);
 	return (0);
 }
 
