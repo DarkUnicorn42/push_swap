@@ -35,7 +35,7 @@ int	ft_atoi(const char *nptr)
 		res += (nptr[i] - 48);
 		i++;
 	}
-	return (res *= sign);
+	return (res * sign);
 }
 /*
 #include <stdio.h>

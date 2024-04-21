@@ -47,6 +47,7 @@ void	print_operation(char *operation);
 void	push(t_stack *stack, int num);
 
 int	ft_atoi(const char *nptr);
-int	stack_init(int argc, char **argv, t_stack *stackA, t_stack *stackB);
+char	**ft_split(char const *s, char c);
+int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
 
 #endif

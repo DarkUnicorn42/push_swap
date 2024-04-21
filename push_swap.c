@@ -26,91 +26,58 @@ void	push(t_stack *stack, int num)
 	stack->data[stack->top] = num;
 }
 
-int	stack_init(int argc, char **argv, t_stack *stackA, t_stack *stackB)
+int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 {
 	int		*nums;  // The numbers to sort
 	int		num_nums;  // The number of numbers
 	int		i;
+	char	**split;
 	
 	num_nums = argc - 1;
 	nums = (int *)malloc(num_nums * sizeof(int));
-	stackA = (int)malloc(num_nums * sizeof(int));
-	stackB = (int)malloc(num_nums * sizeof(int));
-	if (nums == NULL)
-	{
-		printf("Error: malloc failed\n");
-		return (1);
+	*stackA = (t_stack *)malloc(num_nums * sizeof(t_stack));
+	*stackB = (t_stack *)malloc(num_nums * sizeof(t_stack));
+	if (*stackA == NULL || *stackB == NULL) {
+    	fprintf(stderr, "Failed to allocate memory\n");
+    return (-1);
 	}
 	i = 0;
 	if (argc > 2)
 	{
 		while (i < num_nums)
 		{
-			nums[i] = *argv[i + 1] - '0';
+			nums[i] = ft_atoi(argv[i + 1]);
+			printf("nums input[%d]: %d\n", i, nums[i]);
 			i++;
 		}
 	}
 	else if (argc == 2)
 	{
-		//atoi;
+		split = ft_split(argv[1], ' ');
+		while (split[i])
+		{
+			nums[i] = ft_atoi(split[i]);
+			printf("nums input[%d]: %d\n", i, nums[i]);
+			i++;
+		}
 	}
 	else
-		printf("error");
-
-printf("num_nums: %d\n", num_nums);
+		printf("error: no input\n");
 
 //stack init
-	stackA->top = -1;
-	stackB->top = -1;
+	(*stackA)->top = -1;
+	(*stackB)->top = -1;
 //push nums on stackA
-	i = 0;
-	while (i < num_nums)
-	{
-		push(stackA, nums[i]);
-		i++;
-	}
-	return (0);
+return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	stackA;
-	t_stack	stackB;
-	int		i;
+	t_stack	*stackA;
+	t_stack	*stackB;
 	
-	stack_init(argc, argv, &stackA, &stackB);
-	i = 0;
-	while (stackA.top > i)
-	{
-		printf("%d", stackA.data[i]);
-		i++;
-		//stackA.top--;
-	}
-	// Sort the numbers
-	//sort_stack_a(&stackA, &stackB);
-	//printf("%d", stackA.top);
+//	stack_init(argc, argv, &stackA, &stackB);
+	if (stack_init(argc, argv, &stackA, &stackB) == -1)
+   		return -1;
 	return (0);
 }
-
-
-/* ************************************************************************** */
-/*
-int	main(int ac, char **av)
-{
-	t_Stack	*stack_a;
-	t_Stack	*stack_b;
-	int		stack_size;
-	
-	if (ac < 2)
-		return (0);
-    // Parse the command-line arguments into an array of integers.
-    // This will be the initial state of stack A. Stack B will be empty.
-
-    // Implement a sorting algorithm that uses the stack operations to sort the numbers.
-    // The algorithm should aim to use the smallest possible number of operations.
-
-    // Print the operations used by the sorting algorithm.
-
-    return (0);
-}
-*/
