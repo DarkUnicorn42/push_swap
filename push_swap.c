@@ -34,6 +34,8 @@ int	stack_init(int argc, char **argv, t_stack *stackA, t_stack *stackB)
 	
 	num_nums = argc - 1;
 	nums = (int *)malloc(num_nums * sizeof(int));
+	stackA = (int)malloc(num_nums * sizeof(int));
+	stackB = (int)malloc(num_nums * sizeof(int));
 	if (nums == NULL)
 	{
 		printf("Error: malloc failed\n");
@@ -62,7 +64,7 @@ printf("num_nums: %d\n", num_nums);
 	stackB->top = -1;
 //push nums on stackA
 	i = 0;
-	while (i < num_nums + 1)
+	while (i < num_nums)
 	{
 		push(stackA, nums[i]);
 		i++;
@@ -80,7 +82,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (stackA.top > i)
 	{
-		printf("%d\n", stackA.data[i]);
+		printf("%d", stackA.data[i]);
 		i++;
 		//stackA.top--;
 	}
