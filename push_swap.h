@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/19 12:16:30 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:18:22 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print_operation(char *operation);
 void	push(t_stack *stack, int num);
 
 void    sort3(t_stack **stack);
-void    sortbig(t_stack **stack);
+void    sortbig(t_stack **stackA, t_stack **stackB);
 
 int	ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);

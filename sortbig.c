@@ -18,7 +18,8 @@ static int  find_smallest(t_stack **stack)
     int smallest_index;
 
     i = 0;
-    smallest = (*stack)->data[i];
+    smallest_index = 0;
+    smallest = (*stack)->data[0];
     while (i < (*stack)->size)
     {
         if ((*stack)->data[i] < smallest)
@@ -31,26 +32,34 @@ static int  find_smallest(t_stack **stack)
     return (smallest_index);
 }
 
-void    sortbig(t_stack **stack)
+void    sortbig(t_stack **stackA, t_stack **stackB)
 {
-    int i;
+	int	counter;
+	int	smallest_index;
 
-    i = 0;
-    if (find_smallest(stack) < (*stack)->size / 2)
-    {
-        while ((*stack)->data[(*stack)->top] != find_smallest(stack))
-        {
-            ra(*stack);
-            i++;
-        }
-    }
-    else
-    {
-        while ((*stack)->data[(*stack)->top] != find_smallest(stack))
-        {
-            rra(*stack);
-            i++;
-        }
-    }
-    printf("ilosc rotacji = %d\n", i);
+	smallest_index = find_smallest(stackA);
+	counter = 0;
+
+while((*stackA)->top != 0)
+{
+	while ((*stackA)->top != smallest_index)
+	{
+// 		if (smallest_index < (*stackA)->size / 2)
+			ra(*stackA);
+//		else
+//			rra(*stackA);
+		counter++;
+		smallest_index = find_smallest(stackA);
+	}
+	pb(*stackA, *stackB);
+	counter++;
+}
+
+while ((*stackB)->top != -1)
+{
+	pa(*stackA, *stackB);
+	counter++;
+}
+
+    printf("ilosc rotacji = %d\n\n", counter);
 }

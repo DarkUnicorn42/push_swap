@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/19 14:36:18 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:42:12 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,22 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 	nums = (int *)malloc(num_nums * sizeof(int));
 	*stackA = (t_stack *)malloc(num_nums * sizeof(t_stack));
 	*stackB = (t_stack *)malloc(num_nums * sizeof(t_stack));
-	if (*stackA == NULL || *stackB == NULL) {
-    	fprintf(stderr, "Failed to allocate memory\n");
-    return (-1);
+	if (*stackA == NULL || *stackB == NULL)
+	{
+    		fprintf(stderr, "Failed to allocate memory\n");
+		return (-1);
 	}
 
 	// Allocate memory for the data array within stackA and stackB
 	(*stackA)->data = (int *)malloc(num_nums * sizeof(int));
 	(*stackB)->data = (int *)malloc(num_nums * sizeof(int));
-	if ((*stackA)->data == NULL || (*stackB)->data == NULL) {
-    	fprintf(stderr, "Failed to allocate memory for stack data\n");
-    	free(*stackA); // Free stackA
-    	free(*stackB); // Free stackB
-    	free(nums);    // Free nums array
-    	return (-1);
+	if ((*stackA)->data == NULL || (*stackB)->data == NULL)
+	{
+    		fprintf(stderr, "Failed to allocate memory for stack data\n");
+    		free(*stackA); // Free stackA
+    		free(*stackB); // Free stackB
+    		free(nums);    // Free nums array
+    		return (-1);
 	}
 
 	//stack init
@@ -126,7 +128,7 @@ int	main(int argc, char **argv)
 	if (stackA->top == 2)
 		sort3(&stackA);
 	else
-		sortbig(&stackA);
+		sortbig(&stackA, &stackB);
 //	pb(stackA, stackB);
 
 // prints stacks after operations
