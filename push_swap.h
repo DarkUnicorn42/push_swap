@@ -46,6 +46,8 @@ void	rrr(t_stack *stackA, t_stack *stackB);
 void	print_operation(char *operation);
 void	push(t_stack *stack, int num);
 
+void    sort3(t_stack **stack);
+
 int	ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);

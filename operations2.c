@@ -52,6 +52,7 @@ void	rra(t_stack *stackA)
 			stackA->data[i] = stackA->data[i + 1];
 			i++;
 		}
+		 stackA->data[stackA->top] = temp;
 	}
 }
 
