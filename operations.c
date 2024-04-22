@@ -53,6 +53,8 @@ void	pa(t_stack *stackA, t_stack *stackB)
 		stackA->top++;
 		stackA->data[stackA->top] = stackB->data[stackB->top];
 		stackB->top--;
+		stackA->size++;
+		stackB->size--;
 	}
 }
 
@@ -64,6 +66,8 @@ void	pb(t_stack *stackA, t_stack *stackB)
 		stackB->top++;
 		stackB->data[stackB->top] = stackA->data[stackA->top];
 		stackA->top--;
+		stackA->size--;
+		stackB->size++;
 	}
 }
 

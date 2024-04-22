@@ -11,6 +11,20 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+/* --------------- TO DO --------------- */
+/*
+-implement libft library
+-implement ft_printf library
+-makefile for libft
+-makefile for printf
+-free checks
+-norminette
+Functions:
+-check for duplicates
+-sort large nums
+-...
+-profit
+*/
 
 // Function to print an operation
 void	print_operation(char *operation)
@@ -23,6 +37,7 @@ void	push(t_stack *stack, int num)
 {
 	stack->top++;
 	stack->data[stack->top] = num;
+	stack->size++;
 }
 
 void print_stack(t_stack *stack) {
@@ -108,8 +123,12 @@ int	main(int argc, char **argv)
 	if (stack_init(argc, argv, &stackA, &stackB) == -1)
    		return (-1);
 
+	if (stackA->top == 2)
+		sort3(&stackA);
+	else
+		sortbig(&stackA);
+//	pb(stackA, stackB);
 
-sort3(&stackA);
 // prints stacks after operations
     printf("Stack A: ");
     print_stack(stackA);

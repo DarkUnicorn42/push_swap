@@ -23,6 +23,7 @@ typedef struct s_stack
 {
 	int				*data;
 	int				top;
+	int				size;
 }	t_stack;
 /*
 typedef struct s_node
@@ -47,6 +48,7 @@ void	print_operation(char *operation);
 void	push(t_stack *stack, int num);
 
 void    sort3(t_stack **stack);
+void    sortbig(t_stack **stack);
 
 int	ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
