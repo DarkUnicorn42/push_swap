@@ -6,12 +6,12 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:51:44 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/22 18:51:45 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:34:37 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void    sort3(t_stack **stack)
 {

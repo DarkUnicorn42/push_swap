@@ -1,6 +1,7 @@
 NAME = push_swap.a
 
 SOURCES = push_swap.c  src/ft_strlen.c \
+	libft/libft.a\
 
 OBJECTS = $(SOURCES:.c=.o)
 

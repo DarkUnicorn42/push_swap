@@ -6,11 +6,11 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 13:41:56 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/16 13:54:25 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:34:25 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 /* stack is a pointer to a t_stack struct
 stack->data is a pointer to an array of integers

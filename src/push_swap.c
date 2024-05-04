@@ -6,11 +6,11 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/22 19:27:47 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:49:23 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 /* --------------- TO DO --------------- */
 /*
 -implement libft library
@@ -25,7 +25,37 @@ Functions:
 -...
 -profit
 */
+/*
+int	check_duplicates(int num, int len)
+{	
+	int	*tmp;
+	int	i;
+	int	j;
 
+	tmp = (int *)malloc(len * sizeof(int));
+	if (tmp == NULL)
+		return (0);
+	i = 0;
+	j = 0;
+	while (i < len)
+	{
+		tmp[i] = num;
+		while (j < i)
+		{
+			if (tmp[j] != tmp[i])
+			{
+				printf("no duplicates\n");
+				return (1);				
+			}
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	printf("error: duplicates\n");
+	return (0);
+}
+*/
 // Function to print an operation
 void	print_operation(char *operation)
 {
@@ -41,12 +71,12 @@ void	push(t_stack *stack, int num)
 }
 
 void print_stack(t_stack *stack) {
-    int i;
+	int	i;
 
 	i = 0;
-    while (i++ <= stack->top)
-        printf("%d ", stack->data[stack->top - i + 1]);
-    printf("\n");
+	while (i++ <= stack->top)
+		printf("%d ", stack->data[stack->top - i + 1]);
+	printf("\n");
 }
 
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
@@ -55,8 +85,6 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 	int		num_nums;  // The number of numbers
 	int		i;
 	char	**split;
-
-
 	
 	num_nums = argc - 1;
 	nums = (int *)malloc(num_nums * sizeof(int));
@@ -90,8 +118,11 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 		while (i < num_nums)
 		{
 			nums[i] = ft_atoi(argv[i + 1]);
-			printf("nums input[%d]: %d\n", i, nums[i]);
-			push(*stackA, nums[i]);
+		//	if (check_duplicates(nums[i], num_nums))
+		//	{
+				printf("nums input[%d]: %d\n", i, nums[i]);
+				push(*stackA, nums[i]);
+		//	}
 			i++;
 		}
 	}
@@ -108,8 +139,10 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 		free(split);
 	}
 	else
+	{
 		printf("error: no input\n");
-
+		return (-1);
+	}
 
 //push nums on stackA
 //free stacks

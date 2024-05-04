@@ -6,11 +6,11 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/14 12:12:32 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:34:32 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "push_swap.h"
+//#include "../includes/push_swap.h"
 
 // /* free functions*/
 // void	freeStack(Stack *s)

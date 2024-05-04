@@ -6,18 +6,20 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/22 18:18:22 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:14:53 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "../libft/libft.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
+
 
 typedef struct s_stack
 {
@@ -50,8 +52,7 @@ void	push(t_stack *stack, int num);
 void    sort3(t_stack **stack);
 void    sortbig(t_stack **stackA, t_stack **stackB);
 
-int	ft_atoi(const char *nptr);
-char	**ft_split(char const *s, char c);
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
+int	check_duplicates(int num, int len);
 
 #endif

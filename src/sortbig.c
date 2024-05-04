@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:51:49 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/04/22 18:51:50 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:34:40 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ function sort_stack_a(stackA, stackB):
 
 */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static int  find_smallest(t_stack **stack)
 {
