@@ -154,7 +154,6 @@ int	main(int argc, char **argv)
 	t_stack	*stackA;
 	t_stack	*stackB;
 	
-//	stack_init(argc, argv, &stackA, &stackB);
 	if (stack_init(argc, argv, &stackA, &stackB) == -1)
    		return (-1);
 
@@ -162,7 +161,6 @@ int	main(int argc, char **argv)
 		sort3(&stackA);
 	else
 		sortbig(&stackA, &stackB);
-//	pb(stackA, stackB);
 
 // prints stacks after operations
     printf("Stack A: ");
