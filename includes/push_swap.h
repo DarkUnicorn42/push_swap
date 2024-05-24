@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/24 10:06:05 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:58:20 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void    sort3(t_stack **stack);
 void    sortbig(t_stack **stackA, t_stack **stackB);
 
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
-int	check_duplicates(int num, int len);
+int	check_duplicates(int *nums, int len);
 
 #endif

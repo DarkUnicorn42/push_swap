@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 13:41:56 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/04 19:34:30 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:03:18 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	rra(t_stack *stackA)
 			stackA->data[i] = stackA->data[i + 1];
 			i++;
 		}
-		 stackA->data[stackA->top] = temp;
+		stackA->data[stackA->top] = temp;
 	}
 }
 
