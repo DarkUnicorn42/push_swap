@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:51:49 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/21 16:52:35 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:22:34 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,28 @@ function sort_stack_a(stackA, stackB):
 
 #include "../includes/push_swap.h"
 
-static int  find_smallest(t_stack **stack)
+static int	find_smallest(t_stack **stack)
 {
-    int i;
-    int smallest;
-    int smallest_index;
+	int	i;
+	int	smallest;
+	int	smallest_index;
 
-    i = 0;
-    smallest_index = 0;
-    smallest = (*stack)->data[0];
-    while (i < (*stack)->size)
-    {
-        if ((*stack)->data[i] < smallest)
-        {
-            smallest = (*stack)->data[i];
-            smallest_index = i;
-        }
-        i++;
-    }
-    return (smallest_index);
+	i = 0;
+	smallest_index = 0;
+	smallest = (*stack)->data[0];
+	while (i < (*stack)->size)
+	{
+		if ((*stack)->data[i] < smallest)
+		{
+			smallest = (*stack)->data[i];
+			smallest_index = i;
+		}
+		i++;
+	}
+	return (smallest_index);
 }
 
-void    sortbig(t_stack **stackA, t_stack **stackB)
+void	sortbig(t_stack **stackA, t_stack **stackB)
 {
 	int	counter;
 	int	smallest_index;
@@ -52,14 +52,14 @@ void    sortbig(t_stack **stackA, t_stack **stackB)
 	smallest_index = find_smallest(stackA);
 	counter = 0;
 
-while((*stackA)->top != 0)
+while ((*stackA)->top != 0)
 {
 	while ((*stackA)->top != smallest_index)
 	{
-// 		if (smallest_index < (*stackA)->size / 2)
+		// if (smallest_index < ((*stackA)->size / 2))
 			ra(*stackA);
-//		else
-//			rra(*stackA);
+		// else
+			// rra(*stackA);
 		counter++;
 		smallest_index = find_smallest(stackA);
 	}
