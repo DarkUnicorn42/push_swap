@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/04 19:49:23 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/24 08:56:02 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void print_stack(t_stack *stack) {
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 {
 	int		*nums;  // The numbers to sort
-	int		num_nums;  // The number of numbers
+	int		num_nums;
 	int		i;
 	char	**split;
-	
+
 	num_nums = argc - 1;
 	nums = (int *)malloc(num_nums * sizeof(int));
 	*stackA = (t_stack *)malloc(num_nums * sizeof(t_stack));
@@ -102,9 +102,9 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 	if ((*stackA)->data == NULL || (*stackB)->data == NULL)
 	{
     		fprintf(stderr, "Failed to allocate memory for stack data\n");
-    		free(*stackA); // Free stackA
-    		free(*stackB); // Free stackB
-    		free(nums);    // Free nums array
+    		free(*stackA);
+    		free(*stackB);
+    		free(nums);
     		return (-1);
 	}
 

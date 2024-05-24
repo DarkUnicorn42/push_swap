@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/04 19:14:53 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/24 07:59:21 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
-
 
 typedef struct s_stack
 {
