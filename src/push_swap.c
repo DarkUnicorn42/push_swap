@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/24 12:02:48 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:46:22 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int	main(int argc, char **argv)
 	if (stackA->top == 2)
 		sort3(&stackA);
 	else
-		sortbig(&stackA, &stackB);
+		qs(stackA->data, stackA->size);
 	printf("Stack A: ");
 	print_stack(stackA);
 	printf("Stack B: ");
