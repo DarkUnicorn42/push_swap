@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/24 10:58:20 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:38:56 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,13 @@ void	rrr(t_stack *stackA, t_stack *stackB);
 void	print_operation(char *operation);
 void	push(t_stack *stack, int num);
 
+void	qs(int *arr, int size);
 void    sort3(t_stack **stack);
-void    sortbig(t_stack **stackA, t_stack **stackB);
+void	rotate_stack(t_stack **stack, int smallest_index);
+void	sortbig(t_stack **stackA, t_stack **stackB);
+
+void	move_to_stack(t_stack **stackA, t_stack **stackB, int *counter);
+void	move_back_to_stack(t_stack **stackA, t_stack **stackB, int *counter);
 
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
 int	check_duplicates(int *nums, int len);

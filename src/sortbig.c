@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:51:49 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/24 12:22:34 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:39:38 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,66 @@ static int	find_smallest(t_stack **stack)
 	return (smallest_index);
 }
 
+void	move_to_stack(t_stack **stackA, t_stack **stackB, int *counter)
+{
+	int	smallest_index;	
+
+	while ((*stackA)->top >= 0)
+	{
+		smallest_index = find_smallest(stackA);
+		rotate_stack(stackA, smallest_index);
+		pb(*stackA, *stackB);
+		(*counter)++;
+	}
+}
+
+void	move_back_to_stack(t_stack **stackA, t_stack **stackB, int *counter)
+{
+	while ((*stackB)->top >= 0)
+	{
+		pa(*stackA, *stackB);
+		(*counter)++;
+	}
+}
+
 void	sortbig(t_stack **stackA, t_stack **stackB)
 {
 	int	counter;
-	int	smallest_index;
 
-	smallest_index = find_smallest(stackA);
 	counter = 0;
-
-while ((*stackA)->top != 0)
-{
-	while ((*stackA)->top != smallest_index)
-	{
-		// if (smallest_index < ((*stackA)->size / 2))
-			ra(*stackA);
-		// else
-			// rra(*stackA);
-		counter++;
-		smallest_index = find_smallest(stackA);
-	}
-	pb(*stackA, *stackB);
-	counter++;
+	move_to_stack(stackA, stackB, &counter);
+	move_back_to_stack(stackA, stackB, &counter);
+	printf("ilosc rotacji = %d\n\n", counter);
 }
 
-while ((*stackB)->top != -1)
-{
-	pa(*stackA, *stackB);
-	counter++;
-}
+// void	sortbig(t_stack **stackA, t_stack **stackB)
+// {
+// 	int	counter;
+// 	int	smallest_index;
 
-    printf("ilosc rotacji = %d\n\n", counter);
-}
+// 	smallest_index = find_smallest(stackA);
+// 	counter = 0;
+
+// 	while ((*stackA)->top != 0)
+// 	{
+// 		while ((*stackA)->top != smallest_index)
+// 		{
+// 			// if (smallest_index < ((*stackA)->size / 2))
+// 				ra(*stackA);
+// 			// else
+// 				// rra(*stackA);
+// 			counter++;
+// 			smallest_index = find_smallest(stackA);
+// 		}
+// 		pb(*stackA, *stackB);
+// 		counter++;
+// 	}
+
+// 	while ((*stackB)->top != -1)
+// 	{
+// 		pa(*stackA, *stackB);
+// 		counter++;
+// 	}
+
+//     printf("ilosc rotacji = %d\n\n", counter);
+// }
