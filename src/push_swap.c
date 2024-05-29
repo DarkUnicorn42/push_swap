@@ -26,34 +26,37 @@ Functions:
 int allocate_stacks(t_stack **stackA, t_stack **stackB, int num_nums) {
     *stackA = (t_stack *)malloc(sizeof(t_stack));
     *stackB = (t_stack *)malloc(sizeof(t_stack));
-    if (*stackA == NULL || *stackB == NULL) {
-        fprintf(stderr, "Failed to allocate memory\n");
-        return -1;
-    }
+    if (*stackA == NULL || *stackB == NULL)
+        return (-1);
     (*stackA)->data = (int *)malloc(num_nums * sizeof(int));
     (*stackB)->data = (int *)malloc(num_nums * sizeof(int));
-    if ((*stackA)->data == NULL || (*stackB)->data == NULL) {
-        fprintf(stderr, "Failed to allocate memory for stack data\n");
+    if ((*stackA)->data == NULL || (*stackB)->data == NULL)
+	{
         free(*stackA);
         free(*stackB);
-        return -1;
+        return (-1);
     }
     (*stackA)->top = -1;
     (*stackB)->top = -1;
     return 0;
 }
 
-int fill_nums_array(int argc, char **argv, int *nums) {
-    char **split;
-    int i;
+int fill_nums_array(int argc, char **argv, int *nums)
+{
+    char	**split;
+    int		i;
 
     i = 0;
-    if (argc > 2) {
-        while (i < argc - 1) {
+    if (argc > 2)
+	{
+        while (i < argc - 1)
+		{
             nums[i] = ft_atoi(argv[i + 1]);
             i++;
         }
-    } else if (argc == 2) {
+    }
+	else if (argc == 2)
+	{
         split = ft_split(argv[1], ' ');
         i = 0;
         while (split[i]) {
@@ -61,42 +64,47 @@ int fill_nums_array(int argc, char **argv, int *nums) {
             i++;
         }
         free(split);
-    } else {
+    }
+	else
+	{
         printf("error: no input\n");
         return -1;
     }
-    return 0;
+    return (0);
 }
 
-int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB) {
-    int *nums;
-    int num_nums;
-    int i;
+int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
+{
+    int	*nums;
+    int	num_nums;
+    int	i;
 
     i = 0;
     num_nums = argc - 1;
     nums = (int *)malloc(num_nums * sizeof(int));
-    if (nums == NULL) {
-        fprintf(stderr, "Failed to allocate memory for nums\n");
-        return -1;
-    }
-    if (allocate_stacks(stackA, stackB, num_nums) == -1) {
+    if (nums == NULL)
+        return (-1);
+    if (allocate_stacks(stackA, stackB, num_nums) == -1)
+	{
         free(nums);
-        return -1;
+        return (-1);
     }
-    if (fill_nums_array(argc, argv, nums) == -1) {
+    if (fill_nums_array(argc, argv, nums) == -1)
+	{
         free(nums);
-        return -1;
+        return (-1);
     }
-    if (check_duplicates(nums, num_nums)) {
+    if (check_duplicates(nums, num_nums))
+	{
         free(nums);
-        return -1;
+        return (-1);
     }
-    while (i < num_nums) {
+    while (i < num_nums)
+	{
         push(*stackA, nums[i++]);
     }
     free(nums);
-    return 0;
+    return (0);
 }
 
 int main(int argc, char **argv) {
@@ -104,18 +112,17 @@ int main(int argc, char **argv) {
     t_stack *stackB;
 
     if (stack_init(argc, argv, &stackA, &stackB) == -1)
-        return -1;
+        return (-1);
 
     if (stackA->top == 2)
         sort3(&stackA);
     else
         turksort(stackA, stackB, stackA->top + 1);
-
 	print_stack(stackA);
 	print_stack(stackB);
     free(stackA->data);
     free(stackB->data);
     free(stackA);
     free(stackB);
-    return 0;
+    return (0);
 }
