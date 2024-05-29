@@ -28,36 +28,39 @@ int find_min_index(t_stack *stack)
     return (min_index);
 }
 
-void sort_small_stack(t_stack *stack) {
-    if (stack->top == 1 && stack->data[stack->top] > stack->data[stack->top - 1]) {
+void sort_small_stack(t_stack *stack)
+{
+    if (stack->top == 1 && stack->data[stack->top] > stack->data[stack->top - 1])
         sa(stack);
-    }
     if (stack->top == 2) {
-        if (stack->data[stack->top] > stack->data[stack->top - 1]) {
+        if (stack->data[stack->top] > stack->data[stack->top - 1])
             sa(stack);
-        }
-        if (stack->data[stack->top - 1] > stack->data[stack->top - 2]) {
+        if (stack->data[stack->top - 1] > stack->data[stack->top - 2])
+        {
             ra(stack);
             sa(stack);
             rra(stack);
         }
-        if (stack->data[stack->top] > stack->data[stack->top - 1]) {
+        if (stack->data[stack->top] > stack->data[stack->top - 1])
             sa(stack);
-        }
     }
 }
 
-void insert_into_b(t_stack *stackA, t_stack *stackB) {
-    int min_index = find_min_index(stackA);
-    int rotations = stackA->top - min_index;
+void insert_into_b(t_stack *stackA, t_stack *stackB)
+{
+    int min_index;
+    int rotations;
 
+    min_index = find_min_index(stackA);
+    rotations = stackA->top - min_index;
     while (rotations-- > 0) {
         ra(stackA);
     }
     pb(stackA, stackB);
 }
 
-void turksort(t_stack *stackA, t_stack *stackB, int size) {
+void turksort(t_stack *stackA, t_stack *stackB, int size)
+{
     while (stackA->top > 2) {
         insert_into_b(stackA, stackB);
     }
@@ -68,3 +71,4 @@ void turksort(t_stack *stackA, t_stack *stackB, int size) {
         pa(stackA, stackB);
     }
 }
+
