@@ -60,6 +60,17 @@
 // 	qs_recursive(arr, 0, size - 1);
 // }
 
+
+int find_min_index(t_stack *stack) {
+    int min_index = stack->top;
+    for (int i = stack->top; i >= 0; i--) {
+        if (stack->data[i] < stack->data[min_index]) {
+            min_index = i;
+        }
+    }
+    return min_index;
+}
+
 void sort_small_stack(t_stack *stack) {
     if (stack->top == 1 && stack->data[stack->top] > stack->data[stack->top - 1]) {
         sa(stack);
@@ -79,20 +90,22 @@ void sort_small_stack(t_stack *stack) {
     }
 }
 
+void insert_into_b(t_stack *stackA, t_stack *stackB) {
+    int min_index = find_min_index(stackA);
+    int rotations = stackA->top - min_index;
+
+    while (rotations-- > 0) {
+        ra(stackA);
+    }
+    pb(stackA, stackB);
+}
+
 void turksort(t_stack *stackA, t_stack *stackB, int size) {
-    if (size <= 3) {
-        sort_small_stack(stackA);
-        return;
+    while (stackA->top > 2) {
+        insert_into_b(stackA, stackB);
     }
 
-    int mid = size / 2;
-
-    for (int i = 0; i < mid; i++) {
-        pb(stackA, stackB);
-    }
-
-    turksort(stackA, stackB, size - mid);
-    turksort(stackB, stackA, mid);
+    sort_small_stack(stackA);
 
     while (stackB->top != -1) {
         pa(stackA, stackB);
