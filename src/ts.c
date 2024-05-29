@@ -32,7 +32,8 @@ void sort_small_stack(t_stack *stack)
 {
     if (stack->top == 1 && stack->data[stack->top] > stack->data[stack->top - 1])
         sa(stack);
-    if (stack->top == 2) {
+    if (stack->top == 2)
+    {
         if (stack->data[stack->top] > stack->data[stack->top - 1])
             sa(stack);
         if (stack->data[stack->top - 1] > stack->data[stack->top - 2])

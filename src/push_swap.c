@@ -113,7 +113,6 @@ int main(int argc, char **argv) {
 
     if (stack_init(argc, argv, &stackA, &stackB) == -1)
         return (-1);
-
     if (stackA->top == 2)
         sort3(&stackA);
     else
