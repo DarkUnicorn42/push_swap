@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/27 20:46:22 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:35:58 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,53 +22,6 @@ Functions:
 -...
 -profit
 */
-
-int	check_duplicates(int *nums, int len)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < len - 1)
-	{
-		j = i + 1;
-		while (j < len)
-		{
-			if (nums[i] == nums[j])
-			{
-				printf("error: duplicates\n");
-				return (1);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-// Function to print an operation
-void	print_operation(char *operation)
-{
-	printf("%s\n", operation);
-}
-
-// Function to push an integer onto a stack
-void	push(t_stack *stack, int num)
-{
-	stack->top++;
-	stack->data[stack->top] = num;
-	stack->size++;
-}
-
-void	print_stack(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (i++ <= stack->top)
-		printf("%d ", stack->data[stack->top - i + 1]);
-	printf("\n");
-}
 
 int	allocate_stacks(t_stack **stackA, t_stack **stackB, int num_nums)
 {
@@ -173,7 +126,7 @@ int	main(int argc, char **argv)
 	if (stackA->top == 2)
 		sort3(&stackA);
 	else
-		qs(stackA->data, stackA->size);
+		qs(stackA, stackB, stackA->size);
 	printf("Stack A: ");
 	print_stack(stackA);
 	printf("Stack B: ");

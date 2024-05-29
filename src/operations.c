@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 13:41:56 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/04 19:34:25 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:56:40 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	sa(t_stack *stack)
 		stack->data[stack->top] = stack->data[stack->top - 1];
 		stack->data[stack->top - 1] = temp;
 	}
+	print_operation("sa");
 }
 
 void	sb(t_stack *stack)
@@ -44,6 +45,7 @@ void	sb(t_stack *stack)
 		stack->data[stack->top] = stack->data[stack->top - 1];
 		stack->data[stack->top - 1] = temp;
 	}
+	print_operation("sb");
 }
 
 void	pa(t_stack *stackA, t_stack *stackB)
@@ -56,6 +58,7 @@ void	pa(t_stack *stackA, t_stack *stackB)
 		stackA->size++;
 		stackB->size--;
 	}
+	print_operation("pa");
 }
 
 /* Function to push the top element from stack A to stack B */
@@ -69,6 +72,7 @@ void	pb(t_stack *stackA, t_stack *stackB)
 		stackA->size--;
 		stackB->size++;
 	}
+	print_operation("pa");
 }
 
 /* Function to rotate stack A (shift all elements up by one position) */
@@ -88,4 +92,5 @@ void	ra(t_stack *stackA)
 		}
 		stackA->data[0] = temp;
 	}
+	print_operation("ra");
 }

@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/27 17:38:56 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:34:28 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void	rrr(t_stack *stackA, t_stack *stackB);
 
 void	print_operation(char *operation);
 void	push(t_stack *stack, int num);
+void	print_stack(t_stack *stack);
 
-void	qs(int *arr, int size);
-void    sort3(t_stack **stack);
+void	partition(t_stack *stackA, t_stack *stackB, int low, int high) ;
+void	qs(t_stack *stackA, t_stack *stackB, int size);
+void	sort3(t_stack **stack);
 void	rotate_stack(t_stack **stack, int smallest_index);
 void	sortbig(t_stack **stackA, t_stack **stackB);
 

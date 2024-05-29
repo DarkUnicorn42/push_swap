@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 13:41:56 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/24 12:03:18 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:57:54 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	rb(t_stack *stackB)
 		}
 		stackB->data[0] = temp;
 	}
+	print_operation("rb");
 }
 
 /* Function to rotate both stack A and stack B simultaneously */
@@ -36,6 +37,7 @@ void	rr(t_stack *stackA, t_stack *stackB)
 {
 	ra(stackA);
 	rb(stackB);
+	print_operation("rr");
 }
 
 void	rra(t_stack *stackA)
@@ -54,6 +56,7 @@ void	rra(t_stack *stackA)
 		}
 		stackA->data[stackA->top] = temp;
 	}
+	print_operation("rra");
 }
 
 void	rrb(t_stack *stackB)
@@ -71,6 +74,7 @@ void	rrb(t_stack *stackB)
 			i++;
 		}
 	}
+	print_operation("rrb");
 }
 
 /* Function to reverse rotate both stack A and stack B simultaneously */
@@ -78,4 +82,5 @@ void	rrr(t_stack *stackA, t_stack *stackB)
 {
 	rra(stackA);
 	rrb(stackB);
+	print_operation("rrr");
 }
