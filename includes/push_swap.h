@@ -50,14 +50,13 @@ void	push(t_stack *stack, int num);
 void	print_stack(t_stack *stack);
 void	sort_small_stack(t_stack *stackA);
 void	turksort(t_stack *stackA, t_stack *stackB, int size);
+void	insert_into_b(t_stack *stackA, t_stack *stackB);
 
 void	sort3(t_stack **stack);
 void	rotate_stack(t_stack **stack, int smallest_index);
-void	sortbig(t_stack **stackA, t_stack **stackB);
+void	sort5(t_stack **stackA, t_stack **stackB);
 
-void	move_to_stack(t_stack **stackA, t_stack **stackB, int *counter);
-void	move_back_to_stack(t_stack **stackA, t_stack **stackB, int *counter);
-
+int	find_min_index(t_stack *stack);
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
 int	check_duplicates(int *nums, int len);
 
