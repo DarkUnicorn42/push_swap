@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:37:42 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/29 14:29:05 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:35:25 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	print_stack(t_stack *stack);
 void	sort_small_stack(t_stack *stackA);
 void	turksort(t_stack *stackA, t_stack *stackB, int size);
 
-void	partition(t_stack *stackA, t_stack *stackB, int low, int high) ;
-void	qs(t_stack *stackA, t_stack *stackB, int size);
 void	sort3(t_stack **stack);
 void	rotate_stack(t_stack **stack, int smallest_index);
 void	sortbig(t_stack **stackA, t_stack **stackB);

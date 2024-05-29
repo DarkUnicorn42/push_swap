@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:00:52 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/29 14:30:04 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:39:39 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,21 @@
 // 	qs_recursive(arr, 0, size - 1);
 // }
 
-void sort_small_stack(t_stack *stackA) {
-    if (stackA->top == 1 && stackA->data[0] > stackA->data[1]) {
-        sa(stackA);
+void sort_small_stack(t_stack *stack) {
+    if (stack->top == 1 && stack->data[stack->top] > stack->data[stack->top - 1]) {
+        sa(stack);
     }
-    if (stackA->top == 2) {
-        if (stackA->data[1] > stackA->data[2]) {
-            sa(stackA);
+    if (stack->top == 2) {
+        if (stack->data[stack->top] > stack->data[stack->top - 1]) {
+            sa(stack);
         }
-        if (stackA->data[0] > stackA->data[2]) {
-            ra(stackA);
-            ra(stackA);
+        if (stack->data[stack->top - 1] > stack->data[stack->top - 2]) {
+            ra(stack);
+            sa(stack);
+            rra(stack);
         }
-        if (stackA->data[0] > stackA->data[1]) {
-            sa(stackA);
+        if (stack->data[stack->top] > stack->data[stack->top - 1]) {
+            sa(stack);
         }
     }
 }
