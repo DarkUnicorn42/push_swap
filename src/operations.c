@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 13:41:56 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/27 20:56:40 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:40:01 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	pb(t_stack *stackA, t_stack *stackB)
 		stackA->size--;
 		stackB->size++;
 	}
-	print_operation("pa");
+	print_operation("pb");
 }
 
 /* Function to rotate stack A (shift all elements up by one position) */

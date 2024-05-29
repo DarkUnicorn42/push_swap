@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 23:36:25 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/29 13:35:58 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:29:35 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,20 +116,23 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_stack	*stackA;
-	t_stack	*stackB;
+int main(int argc, char **argv) {
+    t_stack *stackA;
+    t_stack *stackB;
 
-	if (stack_init(argc, argv, &stackA, &stackB) == -1)
-		return (-1);
-	if (stackA->top == 2)
-		sort3(&stackA);
-	else
-		qs(stackA, stackB, stackA->size);
-	printf("Stack A: ");
-	print_stack(stackA);
-	printf("Stack B: ");
-	print_stack(stackB);
-	return (0);
+    if (stack_init(argc, argv, &stackA, &stackB) == -1)
+        return -1;
+    if (stackA->top == 2)
+        sort3(&stackA);
+    else
+        turksort(stackA, stackB, stackA->size);
+    printf("Stack A: ");
+    print_stack(stackA);
+    printf("Stack B: ");
+    print_stack(stackB);
+    free(stackA->data);
+    free(stackB->data);
+    free(stackA);
+    free(stackB);
+    return 0;
 }

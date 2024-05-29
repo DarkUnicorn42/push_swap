@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   qs.c                                               :+:      :+:    :+:   */
+/*   ts.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:00:52 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/05/29 13:34:15 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:30:04 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,35 +60,40 @@
 // 	qs_recursive(arr, 0, size - 1);
 // }
 
-void	partition(t_stack *stackA, t_stack *stackB, int low, int high)
-{
-    if (low < high) {
-        int pivot = stackA->data[high];
-        int i = low - 1;
-
-        for (int j = low; j < high; j++) {
-            if (stackA->data[j] < pivot) {
-                i++;
-                // Move all elements < pivot to stackB
-                while (stackA->top > i) {
-                    pb(stackA, stackB);
-                }
-                pa(stackA, stackB);
-            }
+void sort_small_stack(t_stack *stackA) {
+    if (stackA->top == 1 && stackA->data[0] > stackA->data[1]) {
+        sa(stackA);
+    }
+    if (stackA->top == 2) {
+        if (stackA->data[1] > stackA->data[2]) {
+            sa(stackA);
         }
-        // Move pivot to its correct position
-        while (stackA->top > i + 1) {
-            pb(stackA, stackB);
+        if (stackA->data[0] > stackA->data[2]) {
+            ra(stackA);
+            ra(stackA);
         }
-        pa(stackA, stackB);
-
-        int pi = i + 1;
-        partition(stackA, stackB, low, pi - 1);
-        partition(stackA, stackB, pi + 1, high);
+        if (stackA->data[0] > stackA->data[1]) {
+            sa(stackA);
+        }
     }
 }
 
-void	qs(t_stack *stackA, t_stack *stackB, int size)
-{
-    partition(stackA, stackB, 0, size - 1);
+void turksort(t_stack *stackA, t_stack *stackB, int size) {
+    if (size <= 3) {
+        sort_small_stack(stackA);
+        return;
+    }
+
+    int mid = size / 2;
+
+    for (int i = 0; i < mid; i++) {
+        pb(stackA, stackB);
+    }
+
+    turksort(stackA, stackB, size - mid);
+    turksort(stackB, stackA, mid);
+
+    while (stackB->top != -1) {
+        pa(stackA, stackB);
+    }
 }
