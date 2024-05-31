@@ -23,28 +23,28 @@ void    sort3(t_stack **stack)
 	c = (*stack)->data[(*stack)->top - 2];
 	if (a < b && b < c)
 		return ;
-	if (a < b && b > c && a < c)
+	else if (a < b && b > c && a < c)
 	{
 		rra(*stack);
 		sa(*stack);
 		return ;
 	}
-	if (a > b && b < c && a < c)
+	else if (a > b && b < c && a < c)
 	{
 		sa(*stack);
 		return ;
 	}
-	if (a < b && b > c && a > c)
+	else if (a < b && b > c && a > c)
 	{
 		rra(*stack);
 		return ;
 	}
-	if (a > b && b < c && a > c)
+	else if (a > b && b < c && a > c)
 	{
 		ra(*stack);
 		return ;
 	}
-	if (a > b && b > c && a > c)
+	else if (a > b && b > c && a > c)
 	{
 		ra(*stack);
 		sa(*stack);

@@ -11,17 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-/* --------------- TO DO --------------- */
-/*
--implement ft_printf library
--makefile for printf
--free checks
--norminette
-Functions:
--sort large nums
--...
--profit
-*/
 
 int allocate_stacks(t_stack **stackA, t_stack **stackB, int num_nums) {
     *stackA = (t_stack *)malloc(sizeof(t_stack));
@@ -34,8 +23,7 @@ int allocate_stacks(t_stack **stackA, t_stack **stackB, int num_nums) {
 	{
         free(*stackA);
         free(*stackB);
-        fprintf(stderr, "Error\n");
-        return (-1);
+        ft_error();
     }
     (*stackA)->top = -1;
     (*stackA)->size = 0;
@@ -127,10 +115,17 @@ int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
         free(nums);
         ft_error();
     }
+
     while (i < num_nums)
 	{
         push(*stackA, nums[i++]);
     }
+    // reverse population
+    // i = num_nums - 1;
+    // while (i >= 0)
+	// {
+    //     push(*stackA, nums[i--]);
+    // }
     free(nums);
     return (0);
 }
@@ -142,6 +137,15 @@ int main(int argc, char **argv)
 
     if (stack_init(argc, argv, &stackA, &stackB) == -1)
         return (-1);
+    //printf(is_sorted(stackA) ? "sorted\n" : "not sorted\n");
+    if (is_sorted(stackA))
+    {
+        free(stackA->data);
+        free(stackB->data);
+        free(stackA);
+        free(stackB);
+        return (0); // The stack is already sorted
+    }
     if (stackA->top == 2)
         sort_small_stack(stackA);
     else

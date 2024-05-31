@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
+# include <stdbool.h>
 
 typedef struct s_stack
 {
@@ -62,5 +63,6 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
 int	check_duplicates(int *nums, int len);
 int	ft_word_countv2(char const *s, char c);
 int	ft_atoi2(const char *nptr);
+bool is_sorted(t_stack *stack);
 
 #endif

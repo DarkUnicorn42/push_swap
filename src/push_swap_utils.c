@@ -112,11 +112,27 @@ int	ft_atoi2(const char *nptr)
 		if (sign == 1 && res > INT_MAX)
 			ft_error();	
 		if (sign == -1 && res > (long)INT_MAX + 1)
-			ft_error();;
+			ft_error();
 
 		i++;
 	}
 	if (nptr[i] != '\0')
-		ft_error();;
+		ft_error();
 	return ((int)(res * sign));
+}
+
+bool is_sorted(t_stack *stack)
+{
+    int i;
+
+	i = 0;
+    if (stack->top < 1)
+        return (true);
+    while (i < stack->top)
+    {
+        if (stack->data[i] > stack->data[i + 1])
+            return (false);
+		i++;
+    }
+    return (true);
 }

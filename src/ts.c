@@ -36,16 +36,54 @@ void sort_small_stack(t_stack *stack)
     {
         if (stack->data[stack->top] > stack->data[stack->top - 1])
             sa(stack);
-        if (stack->data[stack->top - 1] > stack->data[stack->top - 2])
+        else if (stack->data[stack->top - 1] > stack->data[stack->top - 2])
         {
             ra(stack);
             sa(stack);
             rra(stack);
         }
-        if (stack->data[stack->top] > stack->data[stack->top - 1])
+        else if (stack->data[stack->top] > stack->data[stack->top - 1])
             sa(stack);
     }
 }
+
+// void sort_small_stack(t_stack *stack)
+// {
+//     if (stack->top == 1)
+//     {
+//         if (stack->data[1] > stack->data[0])
+//             sa(stack);
+//     }
+//     else if (stack->top == 2)
+//     {
+//         if (stack->data[2] > stack->data[1] && stack->data[1] > stack->data[0])
+//         {
+//             // Already sorted
+//         }
+//         else if (stack->data[2] > stack->data[0] && stack->data[0] > stack->data[1])
+//         {
+//             sa(stack);
+//         }
+//         else if (stack->data[0] > stack->data[2] && stack->data[2] > stack->data[1])
+//         {
+//             rra(stack);
+//         }
+//         else if (stack->data[0] > stack->data[1] && stack->data[1] > stack->data[2])
+//         {
+//             sa(stack);
+//             rra(stack);
+//         }
+//         else if (stack->data[1] > stack->data[0] && stack->data[0] > stack->data[2])
+//         {
+//             ra(stack);
+//         }
+//         else if (stack->data[1] > stack->data[2] && stack->data[2] > stack->data[0])
+//         {
+//             sa(stack);
+//             ra(stack);
+//         }
+//     }
+// }
 
 void insert_into_b(t_stack *stackA, t_stack *stackB)
 {
