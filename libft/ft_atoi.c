@@ -21,27 +21,18 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	sign = 1;
 	res = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
 		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	if ((nptr[i] == '+' || nptr[i] == '-'))
 	{
 		if (nptr[i] == '-')
 			sign = -1;
 		i++;
 	}
-	while (nptr[i] && nptr[i] >= 48 && nptr[i] <= 57)
+	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		res *= 10;
 		res += (nptr[i] - 48);
-		if (sign == 1 && res > INT_MAX)
-		{
-			return (-1);	
-		}
-		if (sign == -1 && res > (long)INT_MAX + 1)
-		{
-			return (-1);
-		}
-
 		i++;
 	}
 	return ((int)(res * sign));

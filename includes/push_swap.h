@@ -55,10 +55,12 @@ void	insert_into_b(t_stack *stackA, t_stack *stackB);
 void	sort3(t_stack **stack);
 void	rotate_stack(t_stack **stack, int smallest_index);
 void	sort5(t_stack **stackA, t_stack **stackB);
+void	ft_error(void);
 
 int	find_min_index(t_stack *stack);
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
 int	check_duplicates(int *nums, int len);
 int	ft_word_countv2(char const *s, char c);
+int	ft_atoi2(const char *nptr);
 
 #endif

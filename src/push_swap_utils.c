@@ -79,3 +79,44 @@ int	ft_word_countv2(char const *s, char c)
 	}
 	return (count);
 }
+
+void	ft_error(void)
+{	
+	write (2, "Error\n", 6);
+	exit(1);
+}
+
+int	ft_atoi2(const char *nptr)
+{
+	int	i;
+	int	sign;
+	long	res;
+
+	i = 0;
+	sign = 1;
+	res = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
+		i++;
+	if ((nptr[i] == '+' || nptr[i] == '-'))
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	if (nptr[i] < '0' || nptr[i] > '9')
+		ft_error();
+	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res *= 10;
+		res += (nptr[i] - 48);
+		if (sign == 1 && res > INT_MAX)
+			ft_error();	
+		if (sign == -1 && res > (long)INT_MAX + 1)
+			ft_error();;
+
+		i++;
+	}
+	if (nptr[i] != '\0')
+		ft_error();;
+	return ((int)(res * sign));
+}

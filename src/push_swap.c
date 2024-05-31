@@ -55,11 +55,10 @@ int fill_nums_array(int argc, char **argv, int *nums)
 	{
         while (i < argc - 1)
 		{
-            num = ft_atoi(argv[i + 1]);
-            if (num == -1 && (argv[i + 1][0] != '-' || ft_atoi(&argv[i + 1][1]) != 0))
+            num = ft_atoi2(argv[i + 1]);
+            if (num == -1 && (argv[i + 1][0] != '-' || ft_atoi2(&argv[i + 1][1]) != 0))
             {
-                fprintf(stderr, "Error\n");
-                return (-1);
+                ft_error();
             }
             nums[i] = num;
             i++;
@@ -70,18 +69,16 @@ int fill_nums_array(int argc, char **argv, int *nums)
         split = ft_split(argv[1], ' ');
         if (!split)
         {
-            fprintf(stderr, "Error\n");
-            return (-1);
+            ft_error();
         }
         i = 0;
         while (split[i])
         {
-            num = ft_atoi(split[i]);
-            if (num == -1 && (split[i][0] != '-' || ft_atoi(&split[i][1]) != 0))
+            num = ft_atoi2(split[i]);
+            if (num == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
             {
                 free(split);
-                fprintf(stderr, "Error\n");
-                return (-1);
+                ft_error();
             }
             nums[i] = num;
             i++;
@@ -90,8 +87,7 @@ int fill_nums_array(int argc, char **argv, int *nums)
     }
 	else
 	{
-        fprintf(stderr, "Error\n");
-        return (-1);
+        ft_error();
     }
     return (0);
 }
@@ -112,26 +108,24 @@ int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
     nums = (int *)malloc(num_nums * sizeof(int));
     if (nums == NULL)
     {
-        fprintf(stderr, "Error\n");
-        return (-1);
+        ft_error();
     }
     if (allocate_stacks(stackA, stackB, num_nums) == -1)
 	{
         free(nums);
        // fprintf(stderr, "Error\n");
-        return (-1);
+        ft_error();
     }
     if (fill_nums_array(argc, argv, nums) == -1)
 	{
         free(nums);
        // fprintf(stderr, "Error\n");
-        return (-1);
+        ft_error();
     }
     if (check_duplicates(nums, num_nums))
 	{
         free(nums);
-        fprintf(stderr, "Error\n");
-        return (-1);
+        ft_error();
     }
     while (i < num_nums)
 	{
