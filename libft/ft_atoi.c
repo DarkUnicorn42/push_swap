@@ -16,7 +16,7 @@ int	ft_atoi(const char *nptr)
 {
 	int	i;
 	int	sign;
-	int	res;
+	long	res;
 
 	i = 0;
 	sign = 1;
@@ -33,9 +33,18 @@ int	ft_atoi(const char *nptr)
 	{
 		res *= 10;
 		res += (nptr[i] - 48);
+		if (sign == 1 && res > INT_MAX)
+		{
+			return (-1);	
+		}
+		if (sign == -1 && res > (long)INT_MAX + 1)
+		{
+			return (-1);
+		}
+
 		i++;
 	}
-	return (res *= sign);
+	return ((int)(res * sign));
 }
 /*
 #include <stdio.h>

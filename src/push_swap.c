@@ -48,20 +48,26 @@ int fill_nums_array(int argc, char **argv, int *nums)
 {
     char	**split;
     int		i;
+    int     num;
 
     i = 0;
     if (argc > 2)
 	{
         while (i < argc - 1)
 		{
-            nums[i] = ft_atoi(argv[i + 1]);
+            num = ft_atoi(argv[i + 1]);
+            if (num == -1 && (argv[i + 1][0] != '-' || ft_atoi(&argv[i + 1][1]) != 0))
+            {
+                fprintf(stderr, "Error\n");
+                return (-1);
+            }
+            nums[i] = num;
             i++;
         }
     }
 	else if (argc == 2)
 	{
         split = ft_split(argv[1], ' ');
-        
         if (!split)
         {
             fprintf(stderr, "Error\n");
@@ -70,7 +76,14 @@ int fill_nums_array(int argc, char **argv, int *nums)
         i = 0;
         while (split[i])
         {
-            nums[i] = ft_atoi(split[i]);
+            num = ft_atoi(split[i]);
+            if (num == -1 && (split[i][0] != '-' || ft_atoi(&split[i][1]) != 0))
+            {
+                free(split);
+                fprintf(stderr, "Error\n");
+                return (-1);
+            }
+            nums[i] = num;
             i++;
         }
         free(split);
