@@ -73,6 +73,7 @@ void	rrb(t_stack *stackB)
 			stackB->data[i] = stackB->data[i + 1];
 			i++;
 		}
+		stackB->data[stackB->top] = temp;
 	}
 	print_operation("rrb");
 }

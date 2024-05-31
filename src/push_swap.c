@@ -34,11 +34,14 @@ int allocate_stacks(t_stack **stackA, t_stack **stackB, int num_nums) {
 	{
         free(*stackA);
         free(*stackB);
+        fprintf(stderr, "Error\n");
         return (-1);
     }
     (*stackA)->top = -1;
+    (*stackA)->size = 0;
     (*stackB)->top = -1;
-    return 0;
+    (*stackB)->size = 0;
+    return (0);
 }
 
 int fill_nums_array(int argc, char **argv, int *nums)
@@ -58,8 +61,15 @@ int fill_nums_array(int argc, char **argv, int *nums)
 	else if (argc == 2)
 	{
         split = ft_split(argv[1], ' ');
+        
+        if (!split)
+        {
+            fprintf(stderr, "Error\n");
+            return (-1);
+        }
         i = 0;
-        while (split[i]) {
+        while (split[i])
+        {
             nums[i] = ft_atoi(split[i]);
             i++;
         }
@@ -67,8 +77,8 @@ int fill_nums_array(int argc, char **argv, int *nums)
     }
 	else
 	{
-        printf("error: no input\n");
-        return -1;
+        fprintf(stderr, "Error\n");
+        return (-1);
     }
     return (0);
 }
@@ -80,23 +90,34 @@ int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
     int	i;
 
     i = 0;
-    num_nums = argc - 1;
+    if (argc == 2)
+    {
+        num_nums = ft_word_countv2(argv[1], ' ');
+    }
+    else
+        num_nums = argc - 1;
     nums = (int *)malloc(num_nums * sizeof(int));
     if (nums == NULL)
+    {
+        fprintf(stderr, "Error\n");
         return (-1);
+    }
     if (allocate_stacks(stackA, stackB, num_nums) == -1)
 	{
         free(nums);
+       // fprintf(stderr, "Error\n");
         return (-1);
     }
     if (fill_nums_array(argc, argv, nums) == -1)
 	{
         free(nums);
+       // fprintf(stderr, "Error\n");
         return (-1);
     }
     if (check_duplicates(nums, num_nums))
 	{
         free(nums);
+        fprintf(stderr, "Error\n");
         return (-1);
     }
     while (i < num_nums)
@@ -107,18 +128,20 @@ int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
     return (0);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     t_stack *stackA;
     t_stack *stackB;
 
     if (stack_init(argc, argv, &stackA, &stackB) == -1)
         return (-1);
     if (stackA->top == 2)
-        sort3(&stackA);
+        sort_small_stack(stackA);
     else
-        turksort(stackA, stackB, stackA->top + 1);
-	print_stack(stackA);
-	print_stack(stackB);
+        turksort(stackA, stackB);
+    
+    //print_stack(stackA);
+	//print_stack(stackB);
     free(stackA->data);
     free(stackB->data);
     free(stackA);

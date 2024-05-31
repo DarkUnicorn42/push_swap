@@ -2,7 +2,7 @@
 NAME = push_swap
 
 # Source files
-SOURCES = src/operations.c src/operations2.c src/push_swap_utils.c src/push_swap.c src/sort3.c src/sortbig.c
+SOURCES = src/operations.c src/operations2.c src/push_swap_utils.c src/push_swap.c src/sort3.c src/ts.c
 
 # Object files
 OBJECTS = $(SOURCES:.c=.o)

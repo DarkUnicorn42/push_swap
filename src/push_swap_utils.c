@@ -25,8 +25,8 @@ int	check_duplicates(int *nums, int len)
 		{
 			if (nums[i] == nums[j])
 			{
-				printf("error: duplicates\n");
-				return (1);
+				//printf("error: duplicates\n");
+				return (-1);
 			}
 			j++;
 		}
@@ -57,4 +57,25 @@ void	print_stack(t_stack *stack)
 	while (i++ <= stack->top)
 		printf("%d ", stack->data[stack->top - i + 1]);
 	printf("\n");
+}
+
+int	ft_word_countv2(char const *s, char c)
+{
+	int	count;
+	int	inword;
+
+	inword = 0;
+	count = 0;
+	while (*s)
+	{
+		if (*s != c && !inword)
+		{
+			count++;
+			inword = 1;
+		}
+		else if (*s == c)
+			inword = 0;
+		s++;
+	}
+	return (count);
 }

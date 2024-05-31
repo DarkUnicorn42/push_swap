@@ -54,13 +54,14 @@ void insert_into_b(t_stack *stackA, t_stack *stackB)
 
     min_index = find_min_index(stackA);
     rotations = stackA->top - min_index;
-    while (rotations-- > 0) {
+    while (rotations-- > 0)
+    {
         ra(stackA);
     }
     pb(stackA, stackB);
 }
 
-void turksort(t_stack *stackA, t_stack *stackB, int size)
+void turksort(t_stack *stackA, t_stack *stackB)
 {
     while (stackA->top > 2) {
         insert_into_b(stackA, stackB);
