@@ -22,18 +22,19 @@ stack->data[stack->top - 2] is the third-to-top element of the stack
 etc... */
 
 // Function to swap the top two elements of a stack
-void	sa(t_stack *stack)
+void sa(t_stack *stack)
 {
-	int	temp;
+    int temp;
 
-	if (stack->top >= 1)
-	{
-		temp = stack->data[stack->top];
-		stack->data[stack->top] = stack->data[stack->top - 1];
-		stack->data[stack->top - 1] = temp;
-	}
-	print_operation("sa");
+    if (stack->top > 0)
+    {
+        temp = stack->data[stack->top];
+        stack->data[stack->top] = stack->data[stack->top - 1];
+        stack->data[stack->top - 1] = temp;
+    }
+    print_operation("sa");
 }
+
 
 void	sb(t_stack *stack)
 {
@@ -76,21 +77,19 @@ void	pb(t_stack *stackA, t_stack *stackB)
 }
 
 /* Function to rotate stack A (shift all elements up by one position) */
-void	ra(t_stack *stackA)
+void ra(t_stack *stack)
 {
-	int	i;
-	int	temp;
+    int temp;
+    int i;
 
-	if (stackA->top >= 1)
-	{
-		temp = stackA->data[stackA->top];
-		i = 0;
-		while (i < stackA->top)
-		{
-			stackA->data[stackA->top - i] = stackA->data[stackA->top - i - 1];
-			i++;
-		}
-		stackA->data[0] = temp;
-	}
-	print_operation("ra");
+    if (stack->top >= 1)
+    {
+        temp = stack->data[stack->top];
+        for (i = stack->top; i > 0; i--)
+        {
+            stack->data[i] = stack->data[i - 1];
+        }
+        stack->data[0] = temp;
+    }
+    print_operation("ra");
 }

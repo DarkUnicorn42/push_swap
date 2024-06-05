@@ -40,23 +40,21 @@ void	rr(t_stack *stackA, t_stack *stackB)
 	print_operation("rr");
 }
 
-void	rra(t_stack *stackA)
+void rra(t_stack *stack)
 {
-	int	i;
-	int	temp;
+    int temp;
+    int i;
 
-	if (stackA->top >= 1)
-	{
-		temp = stackA->data[0];
-		i = 0;
-		while (i < stackA->top)
-		{
-			stackA->data[i] = stackA->data[i + 1];
-			i++;
-		}
-		stackA->data[stackA->top] = temp;
-	}
-	print_operation("rra");
+    if (stack->top >= 1)
+    {
+        temp = stack->data[0];
+        for (i = 0; i < stack->top; i++)
+        {
+            stack->data[i] = stack->data[i + 1];
+        }
+        stack->data[stack->top] = temp;
+    }
+    print_operation("rra");
 }
 
 void	rrb(t_stack *stackB)

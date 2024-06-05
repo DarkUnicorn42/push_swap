@@ -42,11 +42,23 @@ void	print_operation(char *operation)
 }
 
 // Function to push an integer onto a stack
-void	push(t_stack *stack, int num)
+// void	push(t_stack *stack, int num)
+// {
+// 	stack->top++;
+// 	stack->data[stack->top] = num;
+// 	stack->size++;
+// }
+
+void push(t_stack *stack, int value)
 {
-	stack->top++;
-	stack->data[stack->top] = num;
-	stack->size++;
+    if (stack->top < stack->size - 1)
+    {
+        stack->data[++stack->top] = value;
+    }
+    else
+    {
+        printf("Stack overflow\n");
+    }
 }
 
 void	print_stack(t_stack *stack)
@@ -121,18 +133,18 @@ int	ft_atoi2(const char *nptr)
 	return ((int)(res * sign));
 }
 
-bool is_sorted(t_stack *stack)
+int is_sorted(t_stack *stack)
 {
     int i;
 
-	i = 0;
     if (stack->top < 1)
-        return (true);
+        return (1);
+    i = 0;
     while (i < stack->top)
     {
-        if (stack->data[i] > stack->data[i + 1])
-            return (false);
-		i++;
+        if (stack->data[i] < stack->data[i + 1])
+            return (0);
+        i++;
     }
-    return (true);
+    return (1);
 }

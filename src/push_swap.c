@@ -26,9 +26,9 @@ int allocate_stacks(t_stack **stackA, t_stack **stackB, int num_nums) {
         ft_error();
     }
     (*stackA)->top = -1;
-    (*stackA)->size = 0;
+    (*stackA)->size = num_nums;
     (*stackB)->top = -1;
-    (*stackB)->size = 0;
+    (*stackB)->size = num_nums;
     return (0);
 }
 
@@ -88,9 +88,7 @@ int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 
     i = 0;
     if (argc == 2)
-    {
         num_nums = ft_word_countv2(argv[1], ' ');
-    }
     else
         num_nums = argc - 1;
     nums = (int *)malloc(num_nums * sizeof(int));
@@ -101,13 +99,11 @@ int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
     if (allocate_stacks(stackA, stackB, num_nums) == -1)
 	{
         free(nums);
-       // fprintf(stderr, "Error\n");
         ft_error();
     }
     if (fill_nums_array(argc, argv, nums) == -1)
 	{
         free(nums);
-       // fprintf(stderr, "Error\n");
         ft_error();
     }
     if (check_duplicates(nums, num_nums))
@@ -115,17 +111,17 @@ int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
         free(nums);
         ft_error();
     }
-
-    while (i < num_nums)
-	{
-        push(*stackA, nums[i++]);
-    }
-    // reverse population
-    // i = num_nums - 1;
-    // while (i >= 0)
+    // while (i < num_nums)
 	// {
-    //     push(*stackA, nums[i--]);
+    //     push(*stackA, nums[i]);
+    //     i++;
     // }
+    //reverse population
+    i = num_nums - 1;
+    while (i >= 0)
+	{
+        push(*stackA, nums[i--]);
+    }
     free(nums);
     return (0);
 }
@@ -134,10 +130,10 @@ int main(int argc, char **argv)
 {
     t_stack *stackA;
     t_stack *stackB;
-
+ 
     if (stack_init(argc, argv, &stackA, &stackB) == -1)
         return (-1);
-    //printf(is_sorted(stackA) ? "sorted\n" : "not sorted\n");
+    // printf(is_sorted(stackA) ? "sorted\n" : "not sorted\n");
     if (is_sorted(stackA))
     {
         free(stackA->data);
@@ -151,7 +147,7 @@ int main(int argc, char **argv)
     else
         turksort(stackA, stackB);
     
-    //print_stack(stackA);
+    // print_stack(stackA);
 	//print_stack(stackB);
     free(stackA->data);
     free(stackB->data);
