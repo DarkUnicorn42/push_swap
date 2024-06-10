@@ -147,7 +147,7 @@ int main(int argc, char **argv)
     else
         turksort(stackA, stackB);
     
-    // print_stack(stackA);
+    //print_stack(stackA);
 	//print_stack(stackB);
     free(stackA->data);
     free(stackB->data);
