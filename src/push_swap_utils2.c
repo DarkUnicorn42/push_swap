@@ -12,57 +12,71 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_error(void)
+int	ft_word_countv2(char const *s, char c)
 {
-	write (2, "Error\n", 6);
-	exit(1);
+	int	count;
+	int	inword;
+
+	inword = 0;
+	count = 0;
+	while (*s)
+	{
+		if (*s != c && !inword)
+		{
+			count++;
+			inword = 1;
+		}
+		else if (*s == c)
+			inword = 0;
+		s++;
+	}
+	return (count);
 }
 
-int	check_duplicates(int *nums, int len)
+int	ft_atoi2(const char *nptr)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		sign;
+	long		res;
 
 	i = 0;
-	while (i < len - 1)
+	sign = 1;
+	res = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
+		i++;
+	if ((nptr[i] == '+' || nptr[i] == '-'))
 	{
-		j = i + 1;
-		while (j < len)
-		{
-			if (nums[i] == nums[j])
-			{
-				return (-1);
-			}
-			j++;
-		}
+		if (nptr[i] == '-')
+			sign = -1;
 		i++;
 	}
-	return (0);
-}
-
-void	print_operation(char *operation)
-{
-	printf("%s\n", operation);
-}
-
-void	push(t_stack *stack, int value)
-{
-	if (stack->top < stack->size - 1)
-	{
-		stack->data[++stack->top] = value;
-	}
-	else
-	{
+	if (nptr[i] < '0' || nptr[i] > '9')
 		ft_error();
+	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res *= 10;
+		res += (nptr[i] - 48);
+		if ((sign == 1 && res > INT_MAX) || (sign == -1 && res > (long)INT_MAX + 1))
+			ft_error();
+		i++;
 	}
+	if (nptr[i] != '\0')
+		ft_error();
+	return ((int)(res * sign));
 }
 
-void	print_stack(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	int	i;
 
+	if (stack->top < 1)
+		return (1);
 	i = 0;
-	while (i++ <= stack->top)
-		printf("%d ", stack->data[stack->top - i + 1]);
-	printf("\n");
+	while (i < stack->top)
+	{
+		if (stack->data[i] < stack->data[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }
