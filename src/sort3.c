@@ -13,42 +13,62 @@
 #include "../includes/push_swap.h"
 
 
-void    sort3(t_stack **stack)
-{
-	int	a;
-	int	b;
-	int	c;
+// void    sort3(t_stack **stack)
+// {
+// 	int	a;
+// 	int	b;
+// 	int	c;
 
-	a = (*stack)->data[(*stack)->top];
-	b = (*stack)->data[(*stack)->top - 1];
-	c = (*stack)->data[(*stack)->top - 2];
-	if (a < b && b < c && a < c)
-		return ;
-	else if (a < b && b > c && a < c)
-	{
-		rra(*stack);
-		sa(*stack);
-		return ;
-	}
-	else if (a > b && b < c && a < c)
-	{
-		sa(*stack);
-		return ;
-	}
-	else if (a < b && b > c && a > c)
-	{
-		rra(*stack);
-		return ;
-	}
-	else if (a > b && b < c && a > c)
-	{
-		ra(*stack);
-		return ;
-	}
-	else if (a > b && b > c && a > c)
-	{
-		ra(*stack);
-		sa(*stack);
-		return ;
-	}
+// 	a = (*stack)->data[(*stack)->top];
+// 	b = (*stack)->data[(*stack)->top - 1];
+// 	c = (*stack)->data[(*stack)->top - 2];
+// 	if (a < b && b < c && a < c)
+// 		return ;
+// 	else if (a < b && b > c && a < c)
+// 	{
+// 		rra(*stack);
+// 		sa(*stack);
+// 		return ;
+// 	}
+// 	else if (a > b && b < c && a < c)
+// 	{
+// 		sa(*stack);
+// 		return ;
+// 	}
+// 	else if (a < b && b > c && a > c)
+// 	{
+// 		rra(*stack);
+// 		return ;
+// 	}
+// 	else if (a > b && b < c && a > c)
+// 	{
+// 		ra(*stack);
+// 		return ;
+// 	}
+// 	else if (a > b && b > c && a > c)
+// 	{
+// 		ra(*stack);
+// 		sa(*stack);
+// 		return ;
+// 	}
+// }
+
+void sort3(t_stack **stack)
+{
+    if ((*stack)->data[0].data > (*stack)->data[1].data && (*stack)->data[1].data < (*stack)->data[2].data && (*stack)->data[2].data > (*stack)->data[0].data)
+        sa(*stack);
+    else if ((*stack)->data[0].data > (*stack)->data[1].data && (*stack)->data[1].data > (*stack)->data[2].data && (*stack)->data[2].data < (*stack)->data[0].data)
+    {
+        sa(*stack);
+        rra(*stack);
+    }
+    else if ((*stack)->data[0].data > (*stack)->data[1].data && (*stack)->data[1].data < (*stack)->data[2].data && (*stack)->data[2].data < (*stack)->data[0].data)
+        ra(*stack);
+    else if ((*stack)->data[0].data < (*stack)->data[1].data && (*stack)->data[1].data > (*stack)->data[2].data && (*stack)->data[2].data > (*stack)->data[0].data)
+    {
+        sa(*stack);
+        ra(*stack);
+    }
+    else if ((*stack)->data[0].data < (*stack)->data[1].data && (*stack)->data[1].data > (*stack)->data[2].data && (*stack)->data[2].data < (*stack)->data[0].data)
+        rra(*stack);
 }

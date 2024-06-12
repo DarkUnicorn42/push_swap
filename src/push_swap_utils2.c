@@ -65,18 +65,106 @@ int	ft_atoi2(const char *nptr)
 	return ((int)(res * sign));
 }
 
-int	is_sorted(t_stack *stack)
+void print_operation(char *operation)
 {
-	int	i;
+    ft_putstr_fd(operation, 1);
+    ft_putchar_fd('\n', 1);
+}
 
-	if (stack->top < 1)
-		return (1);
-	i = 0;
-	while (i < stack->top)
-	{
-		if (stack->data[i] < stack->data[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
+
+int stack_is_sorted(t_stack *stack)
+{
+    int i;
+
+    i = 0;
+    while (i < stack->top)
+    {
+        if (stack->data[i].data > stack->data[i + 1].data)
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int parse_args(t_stack *stack, int argc, char **argv)
+{
+    int *nums;
+    int num_count;
+    int i;
+
+    nums = (int *)malloc((argc - 1) * sizeof(int));
+    if (!nums)
+        ft_error();
+
+    num_count = fill_nums_array(argc, argv, nums);
+
+    for (i = 0; i < num_count; i++)
+    {
+        push(stack, nums[i]);
+    }
+
+    free(nums);
+    return (1);
+}
+
+int is_sorted(t_stack *stack)
+{
+    int i;
+
+    i = 0;
+    while (i < stack->top)
+    {
+        if (stack->data[i].data > stack->data[i + 1].data)
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int fill_nums_array(int ac, char **av, int *nums)
+{
+    char **split;
+    int i;
+    int n;
+
+    i = 0;
+    if (ac > 2)
+    {
+        while (i < ac - 1)
+        {
+            n = ft_atoi2(av[i + 1]);
+            if (n == -1 && (av[i + 1][0] != '-' || ft_atoi2(&av[i + 1][1]) != 0))
+            {
+                ft_error();
+            }
+            nums[i] = n;
+            i++;
+        }
+    }
+    else if (ac == 2)
+    {
+        split = ft_split(av[1], ' ');
+        if (!split)
+        {
+            ft_error();
+        }
+        i = 0;
+        while (split[i])
+        {
+            n = ft_atoi2(split[i]);
+            if (n == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
+            {
+                free(split);
+                ft_error();
+            }
+            nums[i] = n;
+            i++;
+        }
+        free(split);
+    }
+    else
+    {
+        ft_error();
+    }
+    return (i);
 }

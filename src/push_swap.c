@@ -12,133 +12,43 @@
 
 #include "../includes/push_swap.h"
 
-int	allocate_stacks(t_stack **stackA, t_stack **stackB, int num_nums)
+int stack_init(int argc, t_stack **stackA, t_stack **stackB)
 {
-	*stackA = (t_stack *)malloc(sizeof(t_stack));
-	*stackB = (t_stack *)malloc(sizeof(t_stack));
-	if (*stackA == NULL || *stackB == NULL)
-		return (-1);
-	(*stackA)->data = (int *)malloc(num_nums * sizeof(int));
-	(*stackB)->data = (int *)malloc(num_nums * sizeof(int));
-	if ((*stackA)->data == NULL || (*stackB)->data == NULL)
-	{
-		free(*stackA);
-		free(*stackB);
-		ft_error();
-	}
-	(*stackA)->top = -1;
-	(*stackA)->size = num_nums;
-	(*stackB)->top = -1;
-	(*stackB)->size = num_nums;
-	return (0);
+    int num_nums = argc - 1;
+
+    *stackA = (t_stack *)malloc(sizeof(t_stack));
+    *stackB = (t_stack *)malloc(sizeof(t_stack));
+    if (!(*stackA) || !(*stackB))
+        return (0);
+
+    (*stackA)->data = (t_node *)malloc(num_nums * sizeof(t_node));
+    (*stackB)->data = (t_node *)malloc(num_nums * sizeof(t_node));
+    if (!((*stackA)->data) || !((*stackB)->data))
+        return (0);
+
+    (*stackA)->top = -1;
+    (*stackB)->top = -1;
+    (*stackA)->size = num_nums;
+    (*stackB)->size = num_nums;
+    return (1);
 }
 
-int	fill_nums_array(int argc, char **argv, int *nums)
+int main(int argc, char **argv)
 {
-	char	**split;
-	int		i;
-	int		num;
+    t_stack *stackA;
+    t_stack *stackB;
 
-	i = 0;
-	if (argc > 2)
-	{
-		while (i < argc - 1)
-		{
-			num = ft_atoi2(argv[i + 1]);
-			if (num == -1 && (argv[i + 1][0] != '-' || ft_atoi2(&argv[i + 1][1]) != 0))
-			{
-				ft_error();
-			}
-			nums[i] = num;
-			i++;
-		}
-	}
-	else if (argc == 2)
-	{
-		split = ft_split(argv[1], ' ');
-		if (!split)
-		{
-			ft_error();
-		}
-		i = 0;
-		while (split[i])
-		{
-			num = ft_atoi2(split[i]);
-			if (num == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
-			{
-				free(split);
-				ft_error();
-			}
-			nums[i] = num;
-			i++;
-		}
-		free(split);
-	}
-	else
-	{
-		ft_error();
-	}
-	return (0);
-}
-
-int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
-{
-	int	*nums;
-	int	num_nums;
-	int	i;
-
-	i = 0;
-	if (argc == 2)
-		num_nums = ft_word_countv2(argv[1], ' ');
-	else
-		num_nums = argc - 1;
-	nums = (int *)malloc(num_nums * sizeof(int));
-	if (nums == NULL)
-		ft_error();
-	if (allocate_stacks(stackA, stackB, num_nums) == -1)
-	{
-		free(nums);
-		ft_error();
-	}
-	if (fill_nums_array(argc, argv, nums) == -1)
-	{
-		free(nums);
-		ft_error();
-	}
-	if (check_duplicates(nums, num_nums))
-	{
-		free(nums);
-		ft_error();
-	}
-	i = num_nums - 1;
-	while (i >= 0)
-		push(*stackA, nums[i--]);
-	free(nums);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_stack	*stacka;
-	t_stack	*stackb;
-
-	if (stack_init(argc, argv, &stacka, &stackb) == -1)
-		return (-1);
-	if (is_sorted(stacka))
-	{
-		free(stacka->data);
-		free(stackb->data);
-		free(stacka);
-		free(stackb);
-		return (0);
-	}
-	if (stacka->top == 2)
-		sort_small_stack(stacka);
-	else
-		turksort(stacka, stackb);
-	free(stacka->data);
-	free(stackb->data);
-	free(stacka);
-	free(stackb);
-	return (0);
+    if (argc < 2)
+        return (0);
+    if (!stack_init(argc, &stackA, &stackB))
+        ft_error();
+    if (!parse_args(stackA, argc, argv))
+        ft_error();
+    if (!is_sorted(stackA))
+        turksort(stackA, stackB);
+    free(stackA->data);
+    free(stackB->data);
+    free(stackA);
+    free(stackB);
+    return (0);
 }

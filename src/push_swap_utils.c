@@ -40,29 +40,39 @@ int	check_duplicates(int *nums, int len)
 	return (0);
 }
 
-void	print_operation(char *operation)
+void print_stack(t_stack *stack)
 {
-	printf("%s\n", operation);
+    int i;
+
+    i = 0;
+    while (i <= stack->top)
+    {
+        printf("Data: %d, Index: %d\n", stack->data[i].data, stack->data[i].index);
+        i++;
+    }
 }
 
-void	push(t_stack *stack, int value)
+void push(t_stack *stack, int num)
 {
-	if (stack->top < stack->size - 1)
-	{
-		stack->data[++stack->top] = value;
-	}
-	else
-	{
-		ft_error();
-	}
+    if (stack->top < stack->size - 1)
+    {
+        stack->top++;
+        stack->data[stack->top].data = num;
+    }
 }
 
-void	print_stack(t_stack *stack)
+int find_min_index(t_stack *stack)
 {
-	int	i;
+    int i;
+    int min_index;
 
-	i = 0;
-	while (i++ <= stack->top)
-		printf("%d ", stack->data[stack->top - i + 1]);
-	printf("\n");
+    i = 0;
+    min_index = stack->data[0].index;
+    while (i <= stack->top)
+    {
+        if (stack->data[i].index < min_index)
+            min_index = stack->data[i].index;
+        i++;
+    }
+    return (min_index);
 }
