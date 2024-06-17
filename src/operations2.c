@@ -12,76 +12,80 @@
 
 #include "../includes/push_swap.h"
 
-/* Function to rotate stack B (shift all elements up by one position) */
-void rb(t_stack *stackB)
-{
-    int i;
-    t_node temp;
-
-    if (stackB->top >= 1)
-    {
-        temp = stackB->data[stackB->top];
-        i = 0;
-        while (i < stackB->top)
-        {
-            stackB->data[stackB->top - i] = stackB->data[stackB->top - i - 1];
-            i++;
-        }
-        stackB->data[0] = temp;
-    }
-    print_operation("rb");
+// Pushes the top element of stack b onto stack a
+void push_a(t_stack *a, t_stack *b) {
+    if (b->size == 0)
+        return;
+    push(a, pop(b));
 }
 
-/* Function to rotate both stack A and stack B simultaneously */
-void rr(t_stack *stackA, t_stack *stackB)
-{
-    ra(stackA);
-    rb(stackB);
-    print_operation("rr");
+// Pushes the top element of stack a onto stack b
+void push_b(t_stack *a, t_stack *b) {
+    if (a->size == 0)
+        return;
+    push(b, pop(a));
 }
 
-void rra(t_stack *stack)
-{
-    t_node temp;
-    int i;
-
-    i = 0;
-    if (stack->top >= 1)
-    {
-        temp = stack->data[0];
-        while (i < stack->top)
-        {
-            stack->data[i] = stack->data[i + 1];
-            i++;
-        }
-        stack->data[stack->top] = temp;
-    }
-    print_operation("rra");
+// Rotates all elements of stack a up by one
+void rotate_a(t_stack *a) {
+    if (a->size < 2)
+        return;
+    t_node *first = a->top;
+    a->top = a->top->next;
+    first->next = NULL;
+    t_node *current = a->top;
+    while (current->next != NULL)
+        current = current->next;
+    current->next = first;
 }
 
-void rrb(t_stack *stackB)
-{
-    int i;
-    t_node temp;
-
-    if (stackB->top >= 1)
-    {
-        temp = stackB->data[0];
-        i = 0;
-        while (i < stackB->top)
-        {
-            stackB->data[i] = stackB->data[i + 1];
-            i++;
-        }
-        stackB->data[stackB->top] = temp;
-    }
-    print_operation("rrb");
+// Rotates all elements of stack b up by one
+void rotate_b(t_stack *b) {
+    if (b->size < 2)
+        return;
+    t_node *first = b->top;
+    b->top = b->top->next;
+    first->next = NULL;
+    t_node *current = b->top;
+    while (current->next != NULL)
+        current = current->next;
+    current->next = first;
 }
 
-/* Function to reverse rotate both stack A and stack B simultaneously */
-void rrr(t_stack *stackA, t_stack *stackB)
-{
-    rra(stackA);
-    rrb(stackB);
-    print_operation("rrr");
+// Rotates all elements of both stacks up by one
+void rotate_both(t_stack *a, t_stack *b) {
+    rotate_a(a);
+    rotate_b(b);
+}
+
+// Shifts all elements of stack a down by one
+void reverse_rotate_a(t_stack *a) {
+    if (a->size < 2)
+        return;
+    t_node *current = a->top;
+    while (current->next->next != NULL)
+        current = current->next;
+    t_node *last = current->next;
+    current->next = NULL;
+    last->next = a->top;
+    a->top = last;
+}
+
+// Shifts all elements of stack b down by one
+void reverse_rotate_b(t_stack *b) {
+    if (b->size < 2)
+        return;
+    t_node *current = b->top;
+    while (current->next->next != NULL)
+        current = current->next;
+    t_node *last = current->next;
+    current->next = NULL;
+    last->next = b->top;
+    b->top = last;
+}
+
+// Shifts all elements of both stacks down by one
+void reverse_rotate_both(t_stack *a, t_stack *b) {
+    reverse_rotate_a(a);
+    reverse_rotate_b(b);
 }

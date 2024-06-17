@@ -12,75 +12,30 @@
 
 #include "../includes/push_swap.h"
 
-void sa(t_stack *stack)
-{
-    t_node temp;
+// Swaps the first two elements of stack a
+void swap_a(t_stack *a) {
+    int temp;
 
-    if (stack->top > 0)
-    {
-        temp = stack->data[stack->top];
-        stack->data[stack->top] = stack->data[stack->top - 1];
-        stack->data[stack->top - 1] = temp;
-    }
-    print_operation("sa");
+    if (a->size < 2)
+        return;
+    temp = a->top->value;
+    a->top->value = a->top->next->value;
+    a->top->next->value = temp;
 }
 
-void sb(t_stack *stack)
-{
-    t_node temp;
+// Swaps the first two elements of stack b
+void swap_b(t_stack *b) {
+    int temp;
 
-    if (stack->top >= 1)
-    {
-        temp = stack->data[stack->top];
-        stack->data[stack->top] = stack->data[stack->top - 1];
-        stack->data[stack->top - 1] = temp;
-    }
-    print_operation("sb");
+    if (b->size < 2)
+        return;
+    temp = b->top->value;
+    b->top->value = b->top->next->value;
+    b->top->next->value = temp;
 }
 
-void pa(t_stack *stackA, t_stack *stackB)
-{
-    if (stackB->top >= 0)
-    {
-        stackA->top++;
-        stackA->data[stackA->top] = stackB->data[stackB->top];
-        stackB->top--;
-        stackA->size++;
-        stackB->size--;
-    }
-    print_operation("pa");
-}
-
-/* Function to push the top element from stack A to stack B */
-void pb(t_stack *stackA, t_stack *stackB)
-{
-    if (stackA->top >= 0)
-    {
-        stackB->top++;
-        stackB->data[stackB->top] = stackA->data[stackA->top];
-        stackA->top--;
-        stackA->size--;
-        stackB->size++;
-    }
-    print_operation("pb");
-}
-
-/* Function to rotate stack A (shift all elements up by one position) */
-void ra(t_stack *stack)
-{
-    t_node temp;
-    int i;
-
-    i = stack->top;
-    if (stack->top >= 1)
-    {
-        temp = stack->data[stack->top];
-        while (i > 0)
-        {
-            stack->data[i] = stack->data[i - 1];
-            i--;
-        }
-        stack->data[0] = temp;
-    }
-    print_operation("ra");
+// Swaps the first two elements of both stacks
+void swap_both(t_stack *a, t_stack *b) {
+    swap_a(a);
+    swap_b(b);
 }

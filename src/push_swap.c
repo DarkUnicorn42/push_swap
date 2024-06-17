@@ -12,43 +12,33 @@
 
 #include "../includes/push_swap.h"
 
-int stack_init(int argc, t_stack **stackA, t_stack **stackB)
-{
-    int num_nums = argc - 1;
+// Main function: Entry point of the program
+int main(int argc, char **argv) {
+    t_stack *a;
+    t_stack *b;
 
-    *stackA = (t_stack *)malloc(sizeof(t_stack));
-    *stackB = (t_stack *)malloc(sizeof(t_stack));
-    if (!(*stackA) || !(*stackB))
-        return (0);
-
-    (*stackA)->data = (t_node *)malloc(num_nums * sizeof(t_node));
-    (*stackB)->data = (t_node *)malloc(num_nums * sizeof(t_node));
-    if (!((*stackA)->data) || !((*stackB)->data))
-        return (0);
-
-    (*stackA)->top = -1;
-    (*stackB)->top = -1;
-    (*stackA)->size = num_nums;
-    (*stackB)->size = num_nums;
-    return (1);
-}
-
-int main(int argc, char **argv)
-{
-    t_stack *stackA;
-    t_stack *stackB;
-
+    // Check if there are arguments provided
     if (argc < 2)
         return (0);
-    if (!stack_init(argc, &stackA, &stackB))
-        ft_error();
-    if (!parse_args(stackA, argc, argv))
-        ft_error();
-    if (!is_sorted(stackA))
-        turksort(stackA, stackB);
-    free(stackA->data);
-    free(stackB->data);
-    free(stackA);
-    free(stackB);
+
+    // Initialize stacks a and b
+    a = init_stack();
+    b = init_stack();
+
+    // Parse and validate the input arguments, and populate stack a
+    if (!parse_args(argc, argv, a)) {
+        write(2, "Error\n", 6);
+        free_stack(a);
+        free_stack(b);
+        return (1);
+    }
+
+    // Sort the stack a
+    sort_stack(a, b);
+
+    // Free the allocated memory for stacks
+    free_stack(a);
+    free_stack(b);
+
     return (0);
 }

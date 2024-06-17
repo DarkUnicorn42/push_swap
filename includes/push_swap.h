@@ -13,6 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+//too be cleared
 # include "../libft/libft.h"
 # include <stddef.h>
 # include <stdlib.h>
@@ -20,49 +21,55 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <stdbool.h>
+# include <limits.h>
+# include <string.h>
+# include <ctype.h>
 
-typedef struct s_node
-{
-	int		data;
-	int		index; //binary value
-}	t_node;
+// Structure for stack nodes
+typedef struct s_node {
+    int value;
+    struct s_node *next;
+} t_node;
 
-typedef struct s_stack
-{
-	t_node			*data;
-	int				top;
-	int				size;
-}	t_stack;
+// Structure for stacks
+typedef struct s_stack {
+    t_node *top;
+    int size;
+} t_stack;
 
 
-int stack_init(int argc, t_stack **stackA, t_stack **stackB);
-int parse_args(t_stack *stack, int argc, char **argv);
-int fill_nums_array(int ac, char **av, int *nums);
+// Function prototypes
+t_stack *init_stack(void);
+void free_stack(t_stack *stack);
+void push(t_stack *stack, int value);
+int pop(t_stack *stack);
+void print_stack(t_stack *stack);
 
-void	sa(t_stack *stack);
-void	sb(t_stack *stack);
-void	pa(t_stack *stackA, t_stack *stackB);
-void	pb(t_stack *stackA, t_stack *stackB);
-void	ra(t_stack *stack);
-void	rb(t_stack *stack);
-void	rr(t_stack *stackA, t_stack *stackB);
-void	rra(t_stack *stack);
-void	rrb(t_stack *stack);
-void	rrr(t_stack *stackA, t_stack *stackB);
+int parse_args(int argc, char **argv, t_stack *a);
+int is_integer(char *str);
+int is_unique(t_stack *a, int value);
 
-void	print_operation(char *operation);
-void	push(t_stack *stack, int num);
-void	print_stack(t_stack *stack);
-void	sort_small_stack(t_stack *stackA, t_stack *stackB);
-void	turksort(t_stack *stackA, t_stack *stackB);
-void	insert_into_b(t_stack *stackA, t_stack *stackB);
-void	sort3(t_stack **stack);
-void	ft_error(void);
+void swap_a(t_stack *a);
+void swap_b(t_stack *b);
+void swap_both(t_stack *a, t_stack *b);
+void push_a(t_stack *a, t_stack *b);
+void push_b(t_stack *a, t_stack *b);
+void rotate_a(t_stack *a);
+void rotate_b(t_stack *b);
+void rotate_both(t_stack *a, t_stack *b);
+void reverse_rotate_a(t_stack *a);
+void reverse_rotate_b(t_stack *b);
+void reverse_rotate_both(t_stack *a, t_stack *b);
 
-int		find_min_index(t_stack *stack);
-int		check_duplicates(int *nums, int len);
-int		ft_word_countv2(char const *s, char c);
-int		ft_atoi2(const char *nptr);
-int		is_sorted(t_stack *stack);
+void sort_stack(t_stack *a, t_stack *b);
+void simple_sort(t_stack *a, t_stack *b);
+void small_sort(t_stack *a, t_stack *b);
+void big_sort(t_stack *a, t_stack *b);
+
+int find_min(t_stack *a);
+int find_max(t_stack *a);
+int calculate_moves(t_stack *a, int value);
+int find_median(t_stack *a);
+int compare_int(const void *a, const void *b);
 
 #endif
