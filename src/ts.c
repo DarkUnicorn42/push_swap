@@ -16,11 +16,11 @@ int find_min_index(t_stack *stack)
 {
 	int	min_index = 0;
 	int	current_index = 0;
-	int	min_value = stack->top->value;
 	t_node	*current = stack->top;	
+	int	min_value = current->value;
 
 	while (current != NULL) {
-		if (current->value > min_value) {
+		if (current->value < min_value) {
 			min_value = current->value;
 			min_index = current_index;
 		}
@@ -47,15 +47,15 @@ void	insert_into_b(t_stack *stackA, t_stack *stackB)
 	int	rotations;
 
 	min_index = find_min_index(stackA);
-	if (min_index >= stackA->size / 2)
+	if (min_index < stackA->size / 2)
 	{
-		rotations = stackA->size - min_index;
+		rotations = min_index;
 		while (rotations-- > 0)
 			ra(stackA);
 	}
 	else
 	{
-		rotations = min_index + 1;
+		rotations = stackA->size - min_index;
 		while (rotations-- > 0)
 			rra(stackA);
 	}

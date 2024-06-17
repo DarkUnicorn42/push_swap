@@ -18,14 +18,6 @@ int	allocate_stacks(t_stack **stackA, t_stack **stackB)
 	*stackB = (t_stack *)malloc(sizeof(t_stack));
 	if (*stackA == NULL || *stackB == NULL)
 		return (-1);
-	// (*stackA)->data = (int *)malloc(num_nums * sizeof(int));
-	// (*stackB)->data = (int *)malloc(num_nums * sizeof(int));
-	// if ((*stackA)->data == NULL || (*stackB)->data == NULL)
-	// {
-	// 	free(*stackA);
-	// 	free(*stackB);
-	// 	ft_error();
-	// }
 	(*stackA)->top = NULL;
 	(*stackB)->top = NULL;	
 	(*stackA)->size = 0;
@@ -135,7 +127,7 @@ int	main(int argc, char **argv)
 	else if (stacka->size < 50)
 		turksort(stacka, stackb);
 	else
-
+		ft_error();
 	//print_stack(stacka);
 	free(stacka);
 	free(stackb);
