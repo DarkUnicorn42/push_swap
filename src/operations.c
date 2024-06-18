@@ -68,7 +68,7 @@ void	sb(t_stack *stack)
 
 void pa(t_stack *stack_a, t_stack *stack_b) {
     if (stack_b->top == NULL) {
-        printf("Error: Stack B is empty, cannot perform pa\n");
+        //printf("Error: Stack B is empty, cannot perform pa\n");
         return;
     }
     t_node *temp = stack_b->top;
@@ -77,6 +77,7 @@ void pa(t_stack *stack_a, t_stack *stack_b) {
     stack_a->top = temp;
     stack_b->size--;
     stack_a->size++;
+	print_operation("pa");
 }
 
 

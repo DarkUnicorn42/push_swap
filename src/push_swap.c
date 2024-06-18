@@ -122,15 +122,16 @@ int	main(int argc, char **argv)
 	len = stacka->size;
 	if (stacka->size == 3)
 		sort_small_stack(stacka);
-	else if (stacka->size < 6)
+	else if (stacka->size < 10)
 		insertsort(stacka, stackb);
 	else
 		{
 			k_sort1(stacka, stackb, len);
-			printf("Finished k_sort1, starting k_sort2\n"); 
+			// print_stacks(stacka, stackb);
+			//  printf("Finished k_sort1, starting k_sort2\n"); 
 			k_sort2(stacka, stackb, len);
 		}
-	//print_stack(stacka);
+	  // print_stacks(stacka, stackb);
 	free(stacka);
 	free(stackb);
 	return (0);

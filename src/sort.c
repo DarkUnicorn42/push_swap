@@ -105,8 +105,9 @@ void k_sort1(t_stack *stack_a, t_stack *stack_b, int length) {
         } else {
             ra(stack_a);
         }
-        printf("k_sort1: i = %d, range = %d\n", i, range);  // Debug print
-        print_stacks(stack_a, stack_b);  // Debug print for stack states
+		// print_stacks(stack_a, stack_b);
+        // printf("k_sort1: i = %d, range = %d\n", i, range);  // Debug print
+        // print_stacks(stack_a, stack_b);  // Debug print for stack states
     }
 }
 
@@ -114,10 +115,10 @@ void k_sort2(t_stack *stack_a, t_stack *stack_b, int length) {
     int rb_count;
     int rrb_count;
 
-    printf("Starting k_sort2: length = %d\n", length);  // Debug print
+    // printf("Starting k_sort2: length = %d\n", length);  // Debug print
     while (length > 0) {
         if (stack_b->top == NULL) {
-            printf("Error: Stack B is empty\n");
+            // printf("Error: Stack B is empty\n");
             break;
         }
         rb_count = count_r(stack_b->top, length - 1);
@@ -137,9 +138,10 @@ void k_sort2(t_stack *stack_a, t_stack *stack_b, int length) {
                 length--;
             }
         }
-        printf("k_sort2: length = %d, rb_count = %d, rrb_count = %d\n", length, rb_count, rrb_count);  // Debug print
-        print_stacks(stack_a, stack_b);  // Debug print for stack states
+        // printf("k_sort2: length = %d, rb_count = %d, rrb_count = %d\n", length, rb_count, rrb_count);  // Debug print
+        // print_stacks(stack_a, stack_b);  // Debug print for stack states
     }
 }
+
 
 
