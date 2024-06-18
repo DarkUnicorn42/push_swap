@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <limits.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <limits.h>
 
-int	    ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -51,4 +51,3 @@ size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-

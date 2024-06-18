@@ -25,9 +25,32 @@ int	allocate_stacks(t_stack **stackA, t_stack **stackB)
 	return (0);
 }
 
-int	fill_nums_array(int argc, char **argv, int *nums)
+void	parse_split_input(char *input, int *nums)
 {
 	char	**split;
+	int		i;
+	int		num;
+
+	split = ft_split(input, ' ');
+	if (!split)
+		ft_error();
+	i = 0;
+	while (split[i])
+	{
+		num = ft_atoi2(split[i]);
+		if (num == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
+		{
+			free(split);
+			ft_error();
+		}
+		nums[i] = num;
+		i++;
+	}
+	free(split);
+}
+
+int	fill_nums_array(int argc, char **argv, int *nums)
+{
 	int		i;
 	int		num;
 
@@ -38,39 +61,37 @@ int	fill_nums_array(int argc, char **argv, int *nums)
 		{
 			num = ft_atoi2(argv[i + 1]);
 			if (num == -1 && (argv[i + 1][0] != '-' || ft_atoi2(&argv[i + 1][1]) != 0))
-			{
 				ft_error();
-			}
 			nums[i] = num;
 			i++;
 		}
 	}
 	else if (argc == 2)
-	{
-		split = ft_split(argv[1], ' ');
-		if (!split)
-		{
-			ft_error();
-		}
-		i = 0;
-		while (split[i])
-		{
-			num = ft_atoi2(split[i]);
-			if (num == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
-			{
-				free(split);
-				ft_error();
-			}
-			nums[i] = num;
-			i++;
-		}
-		free(split);
-	}
+		parse_split_input(argv[1], nums);
 	else
+		ft_error();
+	return (0);
+}
+
+void	initialize_nums_array(int argc, char **argv, int **nums, int *num_nums)
+{
+	if (argc == 2)
+		*num_nums = ft_word_countv2(argv[1], ' ');
+	else
+		*num_nums = argc - 1;
+	*nums = (int *)malloc(*num_nums * sizeof(int));
+	if (*nums == NULL)
+		ft_error();
+	if (fill_nums_array(argc, argv, *nums) == -1)
 	{
+		free(*nums);
 		ft_error();
 	}
-	return (0);
+	if (check_duplicates(*nums, *num_nums))
+	{
+		free(*nums);
+		ft_error();
+	}
 }
 
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
@@ -79,24 +100,8 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 	int	num_nums;
 	int	i;
 
-	if (argc == 2)
-		num_nums = ft_word_countv2(argv[1], ' ');
-	else
-		num_nums = argc - 1;
-	nums = (int *)malloc(num_nums * sizeof(int));
-	if (nums == NULL)
-		ft_error();
+	initialize_nums_array(argc, argv, &nums, &num_nums);
 	if (allocate_stacks(stackA, stackB) == -1)
-	{
-		free(nums);
-		ft_error();
-	}
-	if (fill_nums_array(argc, argv, nums) == -1)
-	{
-		free(nums);
-		ft_error();
-	}
-	if (check_duplicates(nums, num_nums))
 	{
 		free(nums);
 		ft_error();
@@ -108,6 +113,7 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 	set_indices(*stackA);
 	return (0);
 }
+
 
 int	main(int argc, char **argv)
 {
@@ -129,10 +135,13 @@ int	main(int argc, char **argv)
 	else if (stacka->size < 10)
 		insertsort(stacka, stackb);
 	else
-	{
-		k_sort1(stacka, stackb, len);
-		k_sort2(stacka, stackb, len);
-	}
+		{
+			k_sort1(stacka, stackb, len);
+			// print_stacks(stacka, stackb);
+			//  printf("Finished k_sort1, starting k_sort2\n"); 
+			k_sort2(stacka, stackb, len);
+		}
+	  // print_stacks(stacka, stackb);
 	free(stacka);
 	free(stackb);
 	return (0);

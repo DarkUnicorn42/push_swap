@@ -82,6 +82,7 @@ void	set_indices(t_stack *stack)
 	}
 }
 
+/*
 void	print_stack(t_stack *stack, char *name)
 {
 	t_node	*current;
@@ -101,3 +102,4 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 	print_stack(stack_a, "A");
 	print_stack(stack_b, "B");
 }
+*/

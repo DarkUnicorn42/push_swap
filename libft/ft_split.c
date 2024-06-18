@@ -54,8 +54,6 @@ char	**ft_split(char const *s, char c)
 	int			i;
 	int			lenword;
 
-	if (!s)
-		return (0);
 	lenword = ft_word_countv2(s, c);
 	list = (char **)malloc((lenword + 1) * sizeof(char *));
 	if (!list)

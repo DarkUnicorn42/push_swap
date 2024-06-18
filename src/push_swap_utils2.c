@@ -33,18 +33,36 @@ int	ft_word_countv2(char const *s, char c)
 	return (count);
 }
 
+void	ft_atoi_error_check(long res, int sign)
+{
+	if ((sign == 1 && res > INT_MAX) || (sign == -1 && res > (long)INT_MAX + 1))
+		ft_error();
+}
+
+long	ft_parse_number(const char *nptr, int *i)
+{
+	long	res;
+
+	res = 0;
+	while (nptr[*i] && nptr[*i] >= '0' && nptr[*i] <= '9')
+	{
+		res = res * 10 + (nptr[*i] - '0');
+		(*i)++;
+	}
+	return (res);
+}
+
 int	ft_atoi2(const char *nptr)
 {
 	int		i;
 	int		sign;
-	long		res;
+	long	res;
 
 	i = 0;
 	sign = 1;
-	res = 0;
 	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
 		i++;
-	if ((nptr[i] == '+' || nptr[i] == '-'))
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
 		if (nptr[i] == '-')
 			sign = -1;
@@ -52,14 +70,8 @@ int	ft_atoi2(const char *nptr)
 	}
 	if (nptr[i] < '0' || nptr[i] > '9')
 		ft_error();
-	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		res *= 10;
-		res += (nptr[i] - 48);
-		if ((sign == 1 && res > INT_MAX) || (sign == -1 && res > (long)INT_MAX + 1))
-			ft_error();
-		i++;
-	}
+	res = ft_parse_number(nptr, &i);
+	ft_atoi_error_check(res, sign);
 	if (nptr[i] != '\0')
 		ft_error();
 	return ((int)(res * sign));
@@ -79,21 +91,4 @@ int	is_sorted(t_stack *stack)
 		current = current->next;
 	}
 	return (1);
-}
-
-int	ft_sqrt(int number)
-{
-	int	i;
-
-	if (number < 4)
-		return (1);
-	i = 2;
-	while (i * i < number)
-		i++;
-	if (i * i > number)
-	{
-		if ((i * i - number) < ((i - 1) * (i - 1) + (-number)))
-			return (i);
-	}
-	return (i - 1);
 }
