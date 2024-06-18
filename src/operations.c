@@ -52,19 +52,33 @@ void	sb(t_stack *stack)
 	print_operation("sb");
 }
 
-void	pa(t_stack *stackA, t_stack *stackB)
-{
-	t_node	*node_to_move = stackB->top;
-	if (stackB->top != NULL)
-	{
-		stackB->top = stackB->top->next;
-		node_to_move->next = stackA->top;
-		stackA->top = node_to_move;
-		stackB->size--;
-		stackA->size++;
-	}
-	print_operation("pa");
+// void	pa(t_stack *stackA, t_stack *stackB)
+// {
+// 	t_node	*node_to_move = stackB->top;
+// 	if (stackB->top != NULL)
+// 	{
+// 		stackB->top = stackB->top->next;
+// 		node_to_move->next = stackA->top;
+// 		stackA->top = node_to_move;
+// 		stackB->size--;
+// 		stackA->size++;
+// 	}
+// 	print_operation("pa");
+// }
+
+void pa(t_stack *stack_a, t_stack *stack_b) {
+    if (stack_b->top == NULL) {
+        printf("Error: Stack B is empty, cannot perform pa\n");
+        return;
+    }
+    t_node *temp = stack_b->top;
+    stack_b->top = stack_b->top->next;
+    temp->next = stack_a->top;
+    stack_a->top = temp;
+    stack_b->size--;
+    stack_a->size++;
 }
+
 
 /* Function to push the top element from stack A to stack B */
 void	pb(t_stack *stackA, t_stack *stackB)

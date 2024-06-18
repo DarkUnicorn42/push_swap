@@ -73,46 +73,43 @@ int	fill_nums_array(int argc, char **argv, int *nums)
 	return (0);
 }
 
-int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
-{
-	int	*nums;
-	int	num_nums;
-	int	i;
+int stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB) {
+    int *nums;
+    int num_nums;
+    int i;
 
-	i = 0;
-	if (argc == 2)
-		num_nums = ft_word_countv2(argv[1], ' ');
-	else
-		num_nums = argc - 1;
-	nums = (int *)malloc(num_nums * sizeof(int));
-	if (nums == NULL)
-		ft_error();
-	if (allocate_stacks(stackA, stackB) == -1)
-	{
-		free(nums);
-		ft_error();
-	}
-	if (fill_nums_array(argc, argv, nums) == -1)
-	{
-		free(nums);
-		ft_error();
-	}
-	if (check_duplicates(nums, num_nums))
-	{
-		free(nums);
-		ft_error();
-	}
-	i = num_nums - 1;
-	while (i >= 0)
-		push(*stackA, nums[i--]);
-	free(nums);
-	return (0);
+    if (argc == 2)
+        num_nums = ft_word_countv2(argv[1], ' ');
+    else
+        num_nums = argc - 1;
+    nums = (int *)malloc(num_nums * sizeof(int));
+    if (nums == NULL)
+        ft_error();
+    if (allocate_stacks(stackA, stackB) == -1) {
+        free(nums);
+        ft_error();
+    }
+    if (fill_nums_array(argc, argv, nums) == -1) {
+        free(nums);
+        ft_error();
+    }
+    if (check_duplicates(nums, num_nums)) {
+        free(nums);
+        ft_error();
+    }
+    i = num_nums - 1;
+    while (i >= 0)
+        push(*stackA, nums[i--]);
+    free(nums);
+    set_indices(*stackA);  // Set the indices after initializing the stack
+    return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	*stacka;
 	t_stack	*stackb;
+	int		len;
 
 	if (stack_init(argc, argv, &stacka, &stackb) == -1)
 		return (-1);
@@ -122,12 +119,17 @@ int	main(int argc, char **argv)
 		free(stackb);
 		return (0);
 	}
+	len = stacka->size;
 	if (stacka->size == 3)
 		sort_small_stack(stacka);
-	else if (stacka->size < 50)
-		turksort(stacka, stackb);
+	else if (stacka->size < 6)
+		insertsort(stacka, stackb);
 	else
-		ft_error();
+		{
+			k_sort1(stacka, stackb, len);
+			printf("Finished k_sort1, starting k_sort2\n"); 
+			k_sort2(stacka, stackb, len);
+		}
 	//print_stack(stacka);
 	free(stacka);
 	free(stackb);

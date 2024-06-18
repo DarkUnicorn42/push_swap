@@ -32,6 +32,7 @@
 //new struct
 typedef struct s_node {
     int value;
+    int index;
     struct s_node *next;
 } t_node;
 
@@ -53,16 +54,17 @@ void	rrb(t_stack *stack);
 void	rrr(t_stack *stackA, t_stack *stackB);
 
 void	print_operation(char *operation);
-void	push(t_stack *stack, int num);
-void	print_stack(t_stack *stack);
+int push(t_stack *stack, int value);
+//void	print_stack(t_stack *stack);
 void	sort_small_stack(t_stack *stackA);
-void	turksort(t_stack *stackA, t_stack *stackB);
+void	insertsort(t_stack *stackA, t_stack *stackB);
 void	insert_into_b(t_stack *stackA, t_stack *stackB);
 
 void	sort3(t_stack **stack);
 void	rotate_stack(t_stack **stack, int smallest_index);
 void	sort5(t_stack **stackA, t_stack **stackB);
 void	ft_error(void);
+void set_indices(t_stack *stack);
 
 int	find_min_index(t_stack *stack);
 int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB);
@@ -71,5 +73,11 @@ int	ft_word_countv2(char const *s, char c);
 int	ft_atoi2(const char *nptr);
 int	is_sorted(t_stack *stack);
 int	allocate_stacks(t_stack **stackA, t_stack **stackB);
+int	ft_sqrt(int number);
+ void print_stack(t_stack *stack, char *name);
+ void print_stacks(t_stack *stack_a, t_stack *stack_b);
+
+void	k_sort1(t_stack *stack_a, t_stack *stack_b, int length);
+void	k_sort2(t_stack *stack_a, t_stack *stack_b, int length);
 
 #endif
