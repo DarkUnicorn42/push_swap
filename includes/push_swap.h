@@ -60,6 +60,7 @@ void	ft_atoi_error_check(long res, int sign);
 void	rotate_stack_b(t_stack *b, int length, int rb_count, int rrb_count);
 void	parse_split_input(char *input, int *nums);
 void	initialize_nums_array(int argc, char **argv, int **nums, int *num_nums);
+void	free_stack(t_stack *stack);
 
 int		push(t_stack *stack, int value);
 int		find_min_index(t_stack *stack);

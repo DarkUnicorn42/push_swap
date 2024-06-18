@@ -102,8 +102,8 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (is_sorted(stacka))
 	{
-		free(stacka);
-		free(stackb);
+		free_stack(stacka);
+		free_stack(stackb);
 		return (0);
 	}
 	len = stacka->size;
@@ -116,7 +116,7 @@ int	main(int argc, char **argv)
 		k_sort1(stacka, stackb, len);
 		k_sort2(stacka, stackb, len);
 	}
-	free(stacka);
-	free(stackb);
+	free_stack(stacka);
+	free_stack(stackb);
 	return (0);
 }

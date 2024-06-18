@@ -6,7 +6,7 @@
 /*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:23:41 by mwojtcza          #+#    #+#             */
-/*   Updated: 2024/06/18 14:56:45 by mwojtcza         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:22:44 by mwojtcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,19 @@ void	parse_split_input(char *input, int *nums)
 		i++;
 	}
 	free(split);
+}
+
+void	free_stack(t_stack *stack)
+{
+	t_node	*current;
+	t_node	*next;
+
+	current = stack->top;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(stack);
 }

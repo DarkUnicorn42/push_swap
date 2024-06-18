@@ -12,15 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-/* stack is a pointer to a t_stack struct
-stack->data is a pointer to an array of integers
-stack->top is an integer that represents the index 
-...of the top element of the stack
-stack->data[stack->top] is the top element of the stack
-stack->data[stack->top - 1] is the second-to-top element of the stack
-stack->data[stack->top - 2] is the third-to-top element of the stack
-etc... */
-
 // Function to swap the top two elements of a stack
 void	sa(t_stack *stack)
 {
