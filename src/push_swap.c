@@ -19,34 +19,10 @@ int	allocate_stacks(t_stack **stackA, t_stack **stackB)
 	if (*stackA == NULL || *stackB == NULL)
 		return (-1);
 	(*stackA)->top = NULL;
-	(*stackB)->top = NULL;	
+	(*stackB)->top = NULL;
 	(*stackA)->size = 0;
 	(*stackB)->size = 0;
 	return (0);
-}
-
-void	parse_split_input(char *input, int *nums)
-{
-	char	**split;
-	int		i;
-	int		num;
-
-	split = ft_split(input, ' ');
-	if (!split)
-		ft_error();
-	i = 0;
-	while (split[i])
-	{
-		num = ft_atoi2(split[i]);
-		if (num == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
-		{
-			free(split);
-			ft_error();
-		}
-		nums[i] = num;
-		i++;
-	}
-	free(split);
 }
 
 int	fill_nums_array(int argc, char **argv, int *nums)
@@ -60,7 +36,9 @@ int	fill_nums_array(int argc, char **argv, int *nums)
 		while (i < argc - 1)
 		{
 			num = ft_atoi2(argv[i + 1]);
-			if (num == -1 && (argv[i + 1][0] != '-' || ft_atoi2(&argv[i + 1][1]) != 0))
+			if (num == -1 && argv[i + 1][0] != '-')
+				ft_error();
+			else if (num == -1 && ft_atoi2(&argv[i + 1][1]) != 0)
 				ft_error();
 			nums[i] = num;
 			i++;
@@ -114,7 +92,6 @@ int	stack_init(int argc, char **argv, t_stack **stackA, t_stack **stackB)
 	return (0);
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_stack	*stacka;
@@ -135,13 +112,10 @@ int	main(int argc, char **argv)
 	else if (stacka->size < 10)
 		insertsort(stacka, stackb);
 	else
-		{
-			k_sort1(stacka, stackb, len);
-			// print_stacks(stacka, stackb);
-			//  printf("Finished k_sort1, starting k_sort2\n"); 
-			k_sort2(stacka, stackb, len);
-		}
-	  // print_stacks(stacka, stackb);
+	{
+		k_sort1(stacka, stackb, len);
+		k_sort2(stacka, stackb, len);
+	}
 	free(stacka);
 	free(stackb);
 	return (0);
