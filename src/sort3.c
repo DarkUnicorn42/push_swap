@@ -12,7 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-
 void    sort3(t_stack **stack)
 {
 	int	a;
@@ -23,7 +22,6 @@ void    sort3(t_stack **stack)
 	a = node->value;
 	b = node->next->value;
 	c = node->next->next->value;
-
 	if (a < b && b < c && a < c)
 		return ;
 	else if (a < b && b > c && a < c)

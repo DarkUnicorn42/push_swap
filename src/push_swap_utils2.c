@@ -67,7 +67,9 @@ int	ft_atoi2(const char *nptr)
 
 int	is_sorted(t_stack *stack)
 {
-	t_node	*current = stack->top;
+	t_node	*current;
+
+	current = stack->top;
 	if (stack->top == NULL || stack->top->next == NULL)
 		return (1);
 	while (current->next != NULL)

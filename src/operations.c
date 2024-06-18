@@ -24,10 +24,12 @@ etc... */
 // Function to swap the top two elements of a stack
 void	sa(t_stack *stack)
 {
-	int	temp;	
-	t_node	*first = stack->top;
-	t_node	*second = stack->top->next;
+	int		temp;	
+	t_node	*first;
+	t_node	*second;
 
+	first = stack->top;
+	second = stack->top->next;
 	if (stack->top != NULL && stack->top->next != NULL)
 	{
 		temp = first->value;
@@ -39,10 +41,12 @@ void	sa(t_stack *stack)
 
 void	sb(t_stack *stack)
 {
-	int	temp;	
-	t_node	*first = stack->top;
-	t_node	*second = stack->top->next;
+	int		temp;	
+	t_node	*first;
+	t_node	*second;
 
+	first = stack->top;
+	second = stack->top->next;
 	if (stack->top != NULL && stack->top->next != NULL)
 	{
 		temp = first->value;
@@ -52,39 +56,27 @@ void	sb(t_stack *stack)
 	print_operation("sb");
 }
 
-// void	pa(t_stack *stackA, t_stack *stackB)
-// {
-// 	t_node	*node_to_move = stackB->top;
-// 	if (stackB->top != NULL)
-// 	{
-// 		stackB->top = stackB->top->next;
-// 		node_to_move->next = stackA->top;
-// 		stackA->top = node_to_move;
-// 		stackB->size--;
-// 		stackA->size++;
-// 	}
-// 	print_operation("pa");
-// }
+void	pa(t_stack *stack_a, t_stack *stack_b)
+{
+	t_node	*temp;
 
-void pa(t_stack *stack_a, t_stack *stack_b) {
-    if (stack_b->top == NULL) {
-        //printf("Error: Stack B is empty, cannot perform pa\n");
-        return;
-    }
-    t_node *temp = stack_b->top;
-    stack_b->top = stack_b->top->next;
-    temp->next = stack_a->top;
-    stack_a->top = temp;
-    stack_b->size--;
-    stack_a->size++;
+	temp = stack_b->top;
+	if (stack_b->top == NULL)
+		return ;
+	stack_b->top = stack_b->top->next;
+	temp->next = stack_a->top;
+	stack_a->top = temp;
+	stack_b->size--;
+	stack_a->size++;
 	print_operation("pa");
 }
-
 
 /* Function to push the top element from stack A to stack B */
 void	pb(t_stack *stackA, t_stack *stackB)
 {
-	t_node	*node_to_move = stackA->top;
+	t_node	*node_to_move;
+
+	node_to_move = stackA->top;
 	if (stackA->top != NULL)
 	{
 		stackA->top = stackA->top->next;
@@ -99,14 +91,15 @@ void	pb(t_stack *stackA, t_stack *stackB)
 /* Function to rotate stack A (shift all elements up by one position) */
 void	ra(t_stack *stack)
 {
-	t_node	*first = stack->top;
-	t_node	*last = stack->top;
+	t_node	*first;
+	t_node	*last;
 
+	first = stack->top;
+	last = stack->top;
 	while (last->next != NULL)
 	{
 		last = last->next;
 	}
-
 	stack->top = first->next;
 	first->next = NULL;
 	last->next = first;
