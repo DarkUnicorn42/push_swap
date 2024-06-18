@@ -21,28 +21,40 @@ void	insertsort(t_stack *stackA, t_stack *stackB)
 		pa(stackA, stackB);
 }
 
-void	parse_split_input(char *input, int *nums)
+void free_split(char **split)
 {
-	char	**split;
-	int		i;
-	int		num;
+    int j;
 
-	split = ft_split(input, ' ');
-	if (!split)
-		ft_error();
-	i = 0;
-	while (split[i])
-	{
-		num = ft_atoi2(split[i]);
-		if (num == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
-		{
-			free(split);
-			ft_error();
-		}
-		nums[i] = num;
-		i++;
-	}
-	free(split);
+    j = 0;
+    while (split[j])
+    {
+        free(split[j]);
+        j++;
+    }
+    free(split);
+}
+
+void parse_split_input(char *input, int *nums)
+{
+    char **split;
+    int i;
+    int num;
+
+    split = ft_split(input, ' ');
+    if (!split)
+        ft_error();
+    i = 0;
+    while (split[i])
+    {
+        num = ft_atoi2(split[i]);
+        if (num == -1 && (split[i][0] != '-' || ft_atoi2(&split[i][1]) != 0))
+        {
+            free_split(split);
+            ft_error();
+        }
+        nums[i++] = num;
+    }
+    free_split(split);
 }
 
 void	free_stack(t_stack *stack)
